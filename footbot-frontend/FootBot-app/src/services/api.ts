@@ -62,3 +62,4 @@ export const getTables = async (): Promise<CompetitionStandings[]> => {
     return [];
   }
 };
+

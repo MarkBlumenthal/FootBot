@@ -12,18 +12,42 @@ export const StandingsList: React.FC<StandingsListProps> = ({ standings }) => {
   }
 
   return (
-    <div className="list-group">
+    <div className="table-responsive">
       {standings.map((standing, index) => (
         <div key={index} className="my-3">
           <h4>{standing.group}</h4>
-          <ul className="list-group">
-            {standing.table.map((team) => (
-              <li key={team.position} className="list-group-item d-flex justify-content-between align-items-center">
-                <span>{team.position}. {team.name}</span>
-                <span>{team.points} pts</span>
-              </li>
-            ))}
-          </ul>
+          <table className="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">Position</th>
+                <th scope="col">Team</th>
+                <th scope="col">Played</th>
+                <th scope="col">Won</th>
+                <th scope="col">Draw</th>
+                <th scope="col">Lost</th>
+                <th scope="col">Goals For</th>
+                <th scope="col">Goals Against</th>
+                <th scope="col">Goal Difference</th>
+                <th scope="col">Points</th>
+              </tr>
+            </thead>
+            <tbody>
+              {standing.table.map((team) => (
+                <tr key={team.position}>
+                  <th scope="row">{team.position}</th>
+                  <td>{team.name}</td>
+                  <td>{team.playedGames}</td>
+                  <td>{team.won}</td>
+                  <td>{team.draw}</td>
+                  <td>{team.lost}</td>
+                  <td>{team.goalsFor}</td>
+                  <td>{team.goalsAgainst}</td>
+                  <td>{team.goalDifference}</td>
+                  <td>{team.points}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
       ))}
     </div>
