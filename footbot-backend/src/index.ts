@@ -26,6 +26,7 @@ app.get('/api/scores', async (req: Request, res: Response) => {
   try {
     const cachedScores = cache.get('scores');
     if (cachedScores) {
+      console.log('Serving scores from cache');
       return res.json(cachedScores);
     }
 
@@ -33,13 +34,14 @@ app.get('/api/scores', async (req: Request, res: Response) => {
       const response = await axios.get(`https://api.football-data.org/v4/competitions/${competition}/matches`, {
         headers: { 'X-Auth-Token': API_KEY }
       });
+      console.log(`Data for ${competition} matches:`, JSON.stringify(response.data, null, 2)); // Log the response data fully expanded
       return { competition, matches: response.data.matches };
     }));
 
     cache.set('scores', results);
     res.json(results);
   } catch (error) {
-    console.error(error);
+    console.error('Error fetching scores:', error);
     res.status(500).json({ error: 'Failed to fetch data' });
   }
 });
@@ -48,6 +50,7 @@ app.get('/api/tables', async (req: Request, res: Response) => {
   try {
     const cachedTables = cache.get('tables');
     if (cachedTables) {
+      console.log('Serving tables from cache');
       return res.json(cachedTables);
     }
 
@@ -55,13 +58,14 @@ app.get('/api/tables', async (req: Request, res: Response) => {
       const response = await axios.get(`https://api.football-data.org/v4/competitions/${competition}/standings`, {
         headers: { 'X-Auth-Token': API_KEY }
       });
+      console.log(`Data for ${competition} standings:`, JSON.stringify(response.data, null, 2)); // Log the response data fully expanded
       return { competition, standings: response.data.standings };
     }));
 
     cache.set('tables', results);
     res.json(results);
   } catch (error) {
-    console.error(error);
+    console.error('Error fetching tables:', error);
     res.status(500).json({ error: 'Failed to fetch data' });
   }
 });
@@ -69,6 +73,7 @@ app.get('/api/tables', async (req: Request, res: Response) => {
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
+
 
 
 
