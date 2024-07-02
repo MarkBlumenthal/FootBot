@@ -1,4 +1,4 @@
-// footbot-frontend/FootBot-app/src/components/LeagueTable.tsx
+// // footbot-frontend/FootBot-app/src/components/LeagueTable.tsx
 import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { getTables, CompetitionStandings } from '../services/api';
@@ -14,8 +14,19 @@ export const LeagueTable: React.FC = () => {
       try {
         const data = await getTables();
         const leagueData = data.find(league => league.competition === leagueId);
+        console.log('Fetched standings data:', leagueData); // Log the data
+        if (leagueData) {
+          console.log('Standings:', leagueData.standings); // Log standings array
+          leagueData.standings.forEach((standing, index) => {
+            console.log(`Standing group ${index}:`, standing);
+            standing.table.forEach((team, idx) => {
+              console.log(`Team ${idx}:`, team);
+            });
+          });
+        }
         setStandings(leagueData || null);
       } catch (error) {
+        console.error('Failed to fetch table data:', error);
         setError('Failed to fetch table data.');
       }
     };

@@ -1,4 +1,4 @@
-// footbot-frontend/FootBot-app/src/components/StandingsList.tsx
+// // footbot-frontend/FootBot-app/src/components/StandingsList.tsx
 import React from 'react';
 import { Standing } from '../services/api';
 
@@ -32,10 +32,10 @@ export const StandingsList: React.FC<StandingsListProps> = ({ standings }) => {
               </tr>
             </thead>
             <tbody>
-              {standing.table.map((team) => (
-                <tr key={team.position}>
+              {standing.table.map((team, idx) => (
+                <tr key={`${team.position}-${idx}`}>
                   <th scope="row">{team.position}</th>
-                  <td>{team.name}</td>
+                  <td>{team.team.name}</td>
                   <td>{team.playedGames}</td>
                   <td>{team.won}</td>
                   <td>{team.draw}</td>
@@ -53,8 +53,6 @@ export const StandingsList: React.FC<StandingsListProps> = ({ standings }) => {
     </div>
   );
 };
-
-
 
 
 

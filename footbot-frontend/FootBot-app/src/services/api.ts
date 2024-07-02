@@ -1,35 +1,11 @@
-// footbot-frontend/FootBot-app/src/services/api.ts
-export interface Match {
-  homeTeam: { name: string };
-  awayTeam: { name: string };
-  score: {
-    winner: string;
-    duration: string;
-    fullTime: { home: number; away: number };
-    halfTime: { home: number; away: number };
-  };
-  utcDate: string; 
+// // footbot-frontend/FootBot-app/src/services/api.ts
+export interface TeamDetails {
+  name: string;
 }
-
-export interface CompetitionMatches {
-  competition: string;
-  matches: Match[];
-}
-
-export const getScores = async (): Promise<CompetitionMatches[]> => {
-  try {
-    const response = await fetch('http://localhost:3000/api/scores');
-    const data = await response.json();
-    return data;
-  } catch (error) {
-    console.error('Error fetching scores:', error);
-    return [];
-  }
-};
 
 export interface Team {
-  name: string;
   position: number;
+  team: TeamDetails;
   playedGames: number;
   won: number;
   draw: number;
@@ -43,7 +19,7 @@ export interface Team {
 export interface Standing {
   stage: string;
   type: string;
-  group: string;
+  group: string | null;
   table: Team[];
 }
 
@@ -63,7 +39,30 @@ export const getTables = async (): Promise<CompetitionStandings[]> => {
   }
 };
 
+export interface Match {
+  homeTeam: { name: string };
+  awayTeam: { name: string };
+  score: {
+    winner: string;
+    duration: string;
+    fullTime: { home: number; away: number };
+    halfTime: { home: number; away: number };
+  };
+  utcDate: string;
+}
 
+export interface CompetitionMatches {
+  competition: string;
+  matches: Match[];
+}
 
-
-
+export const getScores = async (): Promise<CompetitionMatches[]> => {
+  try {
+    const response = await fetch('http://localhost:3000/api/scores');
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error('Error fetching scores:', error);
+    return [];
+  }
+};
