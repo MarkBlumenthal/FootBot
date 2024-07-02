@@ -1,4 +1,4 @@
-// // footbot-frontend/FootBot-app/src/components/LeagueTable.tsx
+// footbot-frontend/FootBot-app/src/components/LeagueTable.tsx
 import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { getTables, CompetitionStandings } from '../services/api';
