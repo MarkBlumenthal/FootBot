@@ -53,3 +53,8 @@ export const StandingsList: React.FC<StandingsListProps> = ({ standings }) => {
     </div>
   );
 };
+
+
+
+
+
