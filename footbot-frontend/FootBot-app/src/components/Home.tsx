@@ -1,3 +1,4 @@
+// footbot-frontend/FootBot-app/src/components/Home.tsx
 import React from 'react';
 
 export const Home: React.FC = () => (

@@ -1,3 +1,4 @@
+// footbot-frontend/FootBot-app/src/components/StandingsList.tsx
 import React from 'react';
 import { Standing } from '../services/api';
 
