@@ -57,6 +57,15 @@ export interface Match {
   };
   
   
+  export interface Match {
+    homeTeam: { name: string };
+    awayTeam: { name: string };
+    score: { fullTime: { homeTeam: number; awayTeam: number } };
+    utcDate: string; 
+  }
   
-  
+  export interface CompetitionMatches {
+    competition: string;
+    matches: Match[];
+  }
   

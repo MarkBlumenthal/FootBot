@@ -12,13 +12,23 @@ export const MatchList: React.FC<MatchListProps> = ({ matches }) => {
 
   return (
     <div className="list-group">
-      {matches.map((match, index) => (
-        <a key={index} href="#" className="list-group-item list-group-item-action">
-          {match.homeTeam.name} vs {match.awayTeam.name} - {match.score.fullTime.homeTeam}:{match.score.fullTime.awayTeam}
-        </a>
-      ))}
+      {matches.map((match, index) => {
+        const matchDate = new Date(match.utcDate).toLocaleString(); // Format the date
+        return (
+          <a key={index} href="#" className="list-group-item list-group-item-action">
+            <div>
+              {match.homeTeam.name} vs {match.awayTeam.name}
+            </div>
+            <div>
+              {match.score.fullTime.homeTeam}:{match.score.fullTime.awayTeam}
+            </div>
+            <div>{matchDate}</div>
+          </a>
+        );
+      })}
     </div>
   );
 };
+
 
 
