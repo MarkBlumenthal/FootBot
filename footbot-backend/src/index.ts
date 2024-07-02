@@ -29,7 +29,7 @@ app.get('/api/scores', async (req: Request, res: Response) => {
     }
 
     const results = await Promise.all(Object.keys(competitions).map(async (competition) => {
-      const response = await axios.get(`https://api.football-data.org/v2/competitions/${competition}/matches`, {
+      const response = await axios.get(`https://api.football-data.org/v4/competitions/${competition}/matches`, {
         headers: { 'X-Auth-Token': API_KEY }
       });
       return { competition, matches: response.data.matches };
@@ -51,7 +51,7 @@ app.get('/api/tables', async (req: Request, res: Response) => {
     }
 
     const results = await Promise.all(Object.keys(competitions).map(async (competition) => {
-      const response = await axios.get(`https://api.football-data.org/v2/competitions/${competition}/standings`, {
+      const response = await axios.get(`https://api.football-data.org/v4/competitions/${competition}/standings`, {
         headers: { 'X-Auth-Token': API_KEY }
       });
       return { competition, standings: response.data.standings };

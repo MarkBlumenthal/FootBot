@@ -21,11 +21,24 @@ export const LeagueTable: React.FC = () => {
     fetchTables();
   }, [leagueId]);
 
+  if (error) {
+    return <p>{error}</p>;
+  }
+
+  if (!standings) {
+    return <p>Loading...</p>;
+  }
+
+  if (standings.standings.length === 0) {
+    return <p>No standings available.</p>;
+  }
+
   return (
     <div>
-      <h2>{standings?.competition} Table</h2>
-      {error ? <p>{error}</p> : <StandingsList standings={standings?.standings || []} />}
+      <h2>{standings.competition} Table</h2>
+      <StandingsList standings={standings.standings} />
       <Link to={`/league/${leagueId}`} className="btn btn-primary mt-3">View Fixtures</Link>
     </div>
   );
 };
+
