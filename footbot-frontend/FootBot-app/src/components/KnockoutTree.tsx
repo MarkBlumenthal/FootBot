@@ -1,49 +1,36 @@
 // footbot-frontend/FootBot-app/src/components/KnockoutTree.tsx
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Match } from '../services/api';
+import './KnockoutTree.css';
 
 interface KnockoutTreeProps {
   matches: Match[];
 }
 
-const KnockoutTree: React.FC<KnockoutTreeProps> = ({ matches }) => {
-  useEffect(() => {
-    console.log('Knockout matches:', matches);
-    matches.forEach(match => {
-      console.log(`Match: ${match.homeTeam.name} vs ${match.awayTeam.name}, Stage: ${match.stage}`);
-    });
-  }, [matches]);
+const stages = ['LAST_16', 'QUARTER_FINALS', 'SEMI_FINALS', 'FINAL'];
 
-  // Organize matches by stage
-  const stages = ['LAST_16', 'QUARTER_FINALS', 'SEMI_FINALS', 'FINAL'];
+const KnockoutTree: React.FC<KnockoutTreeProps> = ({ matches }) => {
   const matchesByStage: { [stage: string]: Match[] } = stages.reduce((acc, stage) => {
     acc[stage] = matches.filter(match => match.stage === stage);
     return acc;
   }, {} as { [stage: string]: Match[] });
 
-  // Render matches for a particular stage
-  const renderMatches = (stage: string) => {
-    return (
-      <div className="stage">
-        <h4>{stage.replace('_', ' ').toLowerCase().replace(/\b\w/g, l => l.toUpperCase())}</h4>
-        {matchesByStage[stage].map((match, index) => (
-          <div key={index} className="match">
-            <div>{match.homeTeam.name} vs {match.awayTeam.name}</div>
-            <div>
-              Full Time: {match.score.fullTime.home} - {match.score.fullTime.away}
-            </div>
-            <div>{new Date(match.utcDate).toLocaleDateString()}</div>
-          </div>
-        ))}
-      </div>
-    );
-  };
-
   return (
     <div className="knockout-tree">
-      {stages.map(stage => (
-        <div key={stage} className="stage-container">
-          {renderMatches(stage)}
+      {stages.map((stage, index) => (
+        <div key={index} className={`stage stage-${stage.toLowerCase()}`}>
+          <h4>{stage.replace('_', ' ')}</h4>
+          <div className="matches">
+            {matchesByStage[stage].map((match, idx) => (
+              <div key={idx} className="match">
+                <div className="team">{match.homeTeam.name}</div>
+                <div className="score">
+                  {match.score.fullTime.home} - {match.score.fullTime.away}
+                </div>
+                <div className="team">{match.awayTeam.name}</div>
+              </div>
+            ))}
+          </div>
         </div>
       ))}
     </div>
@@ -51,4 +38,9 @@ const KnockoutTree: React.FC<KnockoutTreeProps> = ({ matches }) => {
 };
 
 export default KnockoutTree;
+
+
+
+
+
 

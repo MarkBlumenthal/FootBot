@@ -1,0 +1,66 @@
+/* footbot-frontend/FootBot-app/src/components/KnockoutTree.css */
+.knockout-tree {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 20px;
+  }
+  
+  .stage {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .matches {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .match {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 150px;
+    text-align: center;
+    background-color: #fff;
+  }
+  
+  .team {
+    font-weight: bold;
+  }
+  
+  .score {
+    margin: 5px 0;
+    font-size: 1.2em;
+  }
+  
+  .stage-last_16 {
+    order: 1;
+  }
+  
+  .stage-quarter_finals {
+    order: 2;
+  }
+  
+  .stage-semi_finals {
+    order: 3;
+  }
+  
+  .stage-final {
+    order: 4;
+  }
+  
+
+
+
+
+  

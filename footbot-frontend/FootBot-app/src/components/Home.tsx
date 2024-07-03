@@ -58,7 +58,7 @@ export const Home: React.FC = () => {
 
   return (
     <div>
-      <h2>Welcome to the Football Fixtures and Tables</h2>
+      <h2>Welcome to the FootBot</h2>
       <div style={{ border: '1px solid #ccc', padding: '20px', marginBottom: '20px' }}>
         {loading ? (
           <p>Loading...</p>
