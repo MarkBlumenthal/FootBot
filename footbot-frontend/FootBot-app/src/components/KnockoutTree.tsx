@@ -1,5 +1,5 @@
 // footbot-frontend/FootBot-app/src/components/KnockoutTree.tsx
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Match } from '../services/api';
 
 interface KnockoutTreeProps {
@@ -7,8 +7,15 @@ interface KnockoutTreeProps {
 }
 
 const KnockoutTree: React.FC<KnockoutTreeProps> = ({ matches }) => {
+  useEffect(() => {
+    console.log('Knockout matches:', matches);
+    matches.forEach(match => {
+      console.log(`Match: ${match.homeTeam.name} vs ${match.awayTeam.name}, Stage: ${match.stage}`);
+    });
+  }, [matches]);
+
   // Organize matches by stage
-  const stages = ['ROUND_OF_16', 'QUARTER_FINAL', 'SEMI_FINAL', 'FINAL'];
+  const stages = ['LAST_16', 'QUARTER_FINALS', 'SEMI_FINALS', 'FINAL'];
   const matchesByStage: { [stage: string]: Match[] } = stages.reduce((acc, stage) => {
     acc[stage] = matches.filter(match => match.stage === stage);
     return acc;
@@ -47,4 +54,3 @@ const KnockoutTree: React.FC<KnockoutTreeProps> = ({ matches }) => {
 };
 
 export default KnockoutTree;
-
