@@ -59,14 +59,6 @@ export const LeagueFixtures: React.FC = () => {
                       <p className="card-text">
                         Full Time: {match.score.fullTime.home} - {match.score.fullTime.away}
                       </p>
-                      <p className="card-text">
-                        {new Date(match.utcDate).toLocaleDateString('en-US', {
-                          weekday: 'long',
-                          day: 'numeric',
-                          month: 'long',
-                          year: 'numeric',
-                        })}
-                      </p>
                     </div>
                   </div>
                 </div>
