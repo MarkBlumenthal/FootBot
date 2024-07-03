@@ -1,32 +1,21 @@
 /* footbot-frontend/FootBot-app/src/style.css */
-body {
-  padding: 20px;
+.card-container {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 10px;
+  margin-bottom: 20px;
 }
 
-.knockout-tree {
+.card {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-between;
 }
 
-.stage-container {
-  flex: 1;
-  padding: 10px;
+.card-body {
+  padding: 15px;
 }
-
-.stage {
-  border: 1px solid #ccc;
-  padding: 10px;
-  margin-bottom: 20px;
-  background-color: #f9f9f9;
-}
-
-.match {
-  border-bottom: 1px solid #ddd;
-  padding: 10px 0;
-}
-
-.match:last-child {
-  border-bottom: none;
-}
-

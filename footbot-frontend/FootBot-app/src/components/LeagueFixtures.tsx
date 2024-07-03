@@ -2,8 +2,8 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { getScores, CompetitionMatches } from '../services/api';
-import { MatchList } from './MatchList';
 import { getSeasonForDate } from '../utils';
+import { groupByGameWeek } from '../utils/groupByGameWeek';
 import LoadingModal from './LoadingModal';
 
 export const LeagueFixtures: React.FC = () => {
@@ -12,6 +12,8 @@ export const LeagueFixtures: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const [showModal, setShowModal] = useState(false);
+
+  const totalGameWeeks = leagueId === 'BL1' ? 34 : 38;
 
   useEffect(() => {
     const fetchScores = async () => {
@@ -41,13 +43,39 @@ export const LeagueFixtures: React.FC = () => {
 
   const firstFixtureDate = matches?.matches?.[0]?.utcDate;
   const currentSeason = firstFixtureDate ? getSeasonForDate(firstFixtureDate) : 'Unknown Season';
+  const groupedMatches = matches ? groupByGameWeek(matches.matches, totalGameWeeks) : {};
 
   return (
     <div>
       <h2>{matches?.competition} Fixtures - Season {currentSeason}</h2>
-      {error ? <p>{error}</p> : <MatchList matches={matches?.matches || []} />}
+      {error ? <p>{error}</p> : (
+        Object.keys(groupedMatches).map((gameWeek, index) => (
+          <div key={index} className="mb-4">
+            <h3>{gameWeek}</h3>
+            <div className="row">
+              {groupedMatches[gameWeek].map((match, idx) => (
+                <div key={idx} className="col-md-4 col-lg-2 mb-3">
+                  <div className="card h-100">
+                    <div className="card-body">
+                      <h5 className="card-title">{match.homeTeam.name} vs {match.awayTeam.name}</h5>
+                      <p className="card-text">
+                        Full Time: {match.score.fullTime.home} - {match.score.fullTime.away}
+                      </p>
+                      <p className="card-text">
+                        {new Date(match.utcDate).toLocaleDateString()}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        ))
+      )}
       <Link to={`/league/${leagueId}/table/${currentSeason}`} className="btn btn-primary mt-3">View Table</Link>
       <LoadingModal show={showModal} handleClose={() => setShowModal(false)} />
     </div>
   );
 };
+
+
