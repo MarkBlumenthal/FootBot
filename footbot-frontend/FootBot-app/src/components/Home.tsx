@@ -1,6 +1,7 @@
 // footbot-frontend/FootBot-app/src/components/Home.tsx
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { getTeamFixtures, Match } from '../services/api';
+import LoadingModal from './LoadingModal';
 
 export const Home: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -8,12 +9,14 @@ export const Home: React.FC = () => {
   const [nextFixture, setNextFixture] = useState<Match | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
+  const [showModal, setShowModal] = useState(false);
 
   const handleSearch = async () => {
     if (!searchTerm) return;
 
     setLoading(true);
     setError(null);
+    setShowModal(false);
 
     try {
       const data = await getTeamFixtures(searchTerm);
@@ -37,6 +40,15 @@ export const Home: React.FC = () => {
       setLoading(false);
     }
   };
+
+  useEffect(() => {
+    if (loading) {
+      const timer = setTimeout(() => setShowModal(true), 3000);
+      return () => clearTimeout(timer);
+    } else {
+      setShowModal(false);
+    }
+  }, [loading]);
 
   const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === 'Enter') {
@@ -88,7 +100,7 @@ export const Home: React.FC = () => {
       <button onClick={handleSearch} className="btn btn-primary">
         Search
       </button>
+      <LoadingModal show={showModal} handleClose={() => setShowModal(false)} />
     </div>
   );
 };
-
