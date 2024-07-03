@@ -4,7 +4,7 @@ import { getScores } from '../utils/apiUtils';
 import NodeCache from 'node-cache';
 
 const router = Router();
-const cache = new NodeCache({ stdTTL: 800 }); 
+const cache = new NodeCache({ stdTTL: 900 }); 
 
 router.get('/', async (req: Request, res: Response) => {
   try {

@@ -20,16 +20,10 @@ const App: React.FC = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/league/:leagueId" element={<LeagueFixtures />} />
-        <Route path="/league/:leagueId/table" element={<LeagueTable />} />
+        <Route path="/league/:leagueId/table/:season" element={<LeagueTable />} />
       </Routes>
     </div>
   );
 };
 
 export default App;
-
-
-
-
-
-
