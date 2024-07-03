@@ -40,7 +40,7 @@ export const getTables = async (): Promise<CompetitionStandings[]> => {
 };
 
 export interface Match {
-  stage: string; // Add this line
+  stage: string;
   homeTeam: { name: string };
   awayTeam: { name: string };
   score: {
@@ -78,3 +78,25 @@ export const getKnockoutStages = async (): Promise<Match[]> => {
     return [];
   }
 };
+
+export const getTeamFixtures = async (teamName: string): Promise<Match[]> => {
+  try {
+    const response = await fetch('http://localhost:3000/api/scores');
+    const data = await response.json() as CompetitionMatches[];
+
+    const teamMatches: Match[] = [];
+    data.forEach(competition => {
+      competition.matches.forEach(match => {
+        if (match.homeTeam.name.toLowerCase() === teamName.toLowerCase() || match.awayTeam.name.toLowerCase() === teamName.toLowerCase()) {
+          teamMatches.push(match);
+        }
+      });
+    });
+
+    return teamMatches;
+  } catch (error) {
+    console.error('Error fetching team fixtures:', error);
+    return [];
+  }
+};
+
