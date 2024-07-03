@@ -84,10 +84,18 @@ export const getTeamFixtures = async (teamName: string): Promise<Match[]> => {
     const response = await fetch('http://localhost:3000/api/scores');
     const data = await response.json() as CompetitionMatches[];
 
+    const normalize = (str: string) => 
+      str.toLowerCase().replace(/[^a-z0-9 ]/g, '').replace(/\b(fc|sc|club|team)\b/g, '').trim();
+
+    const normalizedSearchTerm = normalize(teamName);
+
     const teamMatches: Match[] = [];
     data.forEach(competition => {
       competition.matches.forEach(match => {
-        if (match.homeTeam.name.toLowerCase() === teamName.toLowerCase() || match.awayTeam.name.toLowerCase() === teamName.toLowerCase()) {
+        const homeTeamName = normalize(match.homeTeam.name);
+        const awayTeamName = normalize(match.awayTeam.name);
+
+        if (homeTeamName.includes(normalizedSearchTerm) || awayTeamName.includes(normalizedSearchTerm)) {
           teamMatches.push(match);
         }
       });
@@ -99,4 +107,3 @@ export const getTeamFixtures = async (teamName: string): Promise<Match[]> => {
     return [];
   }
 };
-

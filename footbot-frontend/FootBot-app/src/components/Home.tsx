@@ -65,7 +65,7 @@ export const Home: React.FC = () => {
             ) : (
               <p>No recent fixtures available.</p>
             )}
-            <h4>Upcoming Fixture</h4>
+            <h4>Next Fixture</h4>
             {nextFixture ? (
               <div>
                 <div>{nextFixture.homeTeam.name} vs {nextFixture.awayTeam.name}</div>
@@ -93,5 +93,3 @@ export const Home: React.FC = () => {
     </div>
   );
 };
-
-
