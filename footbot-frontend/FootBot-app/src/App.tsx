@@ -13,7 +13,7 @@ const App: React.FC = () => {
         <Link className="nav-link" to="/">Home</Link>
         <Link className="nav-link" to="/league/PL">Premier League</Link>
         <Link className="nav-link" to="/league/SA">Serie A</Link>
-        <Link className="nav-link" to="/league/PD">Primera Division</Link>
+        <Link className="nav-link" to="/league/PD">La Liga</Link>
         <Link className="nav-link" to="/league/BL1">Bundesliga</Link>
         <Link className="nav-link" to="/league/CL">UEFA Champions League</Link>
       </nav>
