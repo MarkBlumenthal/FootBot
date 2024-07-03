@@ -59,8 +59,7 @@ export const Home: React.FC = () => {
               <div>
                 <div>{recentFixture.homeTeam.name} vs {recentFixture.awayTeam.name}</div>
                 <div>Full Time: {recentFixture.score.fullTime.home} - {recentFixture.score.fullTime.away}</div>
-                <div>Half Time: {recentFixture.score.halfTime.home} - {recentFixture.score.halfTime.away}</div>
-                <div>{new Date(recentFixture.utcDate).toLocaleString()}</div>
+                <div>{new Date(recentFixture.utcDate).toLocaleDateString()}</div>
               </div>
             ) : (
               <p>No recent fixtures available.</p>
@@ -70,8 +69,7 @@ export const Home: React.FC = () => {
               <div>
                 <div>{nextFixture.homeTeam.name} vs {nextFixture.awayTeam.name}</div>
                 <div>Full Time: {nextFixture.score.fullTime.home} - {nextFixture.score.fullTime.away}</div>
-                <div>Half Time: {nextFixture.score.halfTime.home} - {nextFixture.score.halfTime.away}</div>
-                <div>{new Date(nextFixture.utcDate).toLocaleString()}</div>
+                <div>{new Date(nextFixture.utcDate).toLocaleDateString()}</div>
               </div>
             ) : (
               <p>No upcoming fixtures available.</p>
@@ -93,3 +91,4 @@ export const Home: React.FC = () => {
     </div>
   );
 };
+

@@ -32,10 +32,7 @@ const KnockoutTree: React.FC<KnockoutTreeProps> = ({ matches }) => {
             <div>
               Full Time: {match.score.fullTime.home} - {match.score.fullTime.away}
             </div>
-            <div>
-              Half Time: {match.score.halfTime.home} - {match.score.halfTime.away}
-            </div>
-            <div>{new Date(match.utcDate).toLocaleString()}</div>
+            <div>{new Date(match.utcDate).toLocaleDateString()}</div>
           </div>
         ))}
       </div>
@@ -54,3 +51,4 @@ const KnockoutTree: React.FC<KnockoutTreeProps> = ({ matches }) => {
 };
 
 export default KnockoutTree;
+

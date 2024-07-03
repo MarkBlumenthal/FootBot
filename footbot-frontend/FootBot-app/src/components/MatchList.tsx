@@ -14,7 +14,7 @@ export const MatchList: React.FC<MatchListProps> = ({ matches }) => {
   return (
     <div className="list-group">
       {matches.map((match, index) => {
-        const matchDate = new Date(match.utcDate).toLocaleString(); // Format the date
+        const matchDate = new Date(match.utcDate).toLocaleDateString(); // Format the date
         return (
           <div key={index} className="list-group-item list-group-item-action">
             <div>
@@ -22,9 +22,6 @@ export const MatchList: React.FC<MatchListProps> = ({ matches }) => {
             </div>
             <div>
               Full Time: {match.score.fullTime.home} - {match.score.fullTime.away}
-            </div>
-            <div>
-              Half Time: {match.score.halfTime.home} - {match.score.halfTime.away}
             </div>
             <div>{matchDate}</div>
           </div>
