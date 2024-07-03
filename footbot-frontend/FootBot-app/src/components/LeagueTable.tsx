@@ -1,36 +1,33 @@
 // footbot-frontend/FootBot-app/src/components/LeagueTable.tsx
 import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { getTables, CompetitionStandings } from '../services/api';
+import { getTables, getKnockoutStages, CompetitionStandings, Match } from '../services/api';
 import { StandingsList } from './StandingsList';
+import KnockoutTree from './KnockoutTree';
 
 export const LeagueTable: React.FC = () => {
   const { leagueId } = useParams<{ leagueId: string }>();
   const [standings, setStandings] = useState<CompetitionStandings | null>(null);
+  const [knockoutStages, setKnockoutStages] = useState<Match[]>([]);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    const fetchTables = async () => {
+    const fetchData = async () => {
       try {
-        const data = await getTables();
-        const leagueData = data.find(league => league.competition === leagueId);
-        console.log('Fetched standings data:', leagueData); // Log the data
-        if (leagueData) {
-          console.log('Standings:', leagueData.standings); // Log standings array
-          leagueData.standings.forEach((standing, index) => {
-            console.log(`Standing group ${index}:`, standing);
-            standing.table.forEach((team, idx) => {
-              console.log(`Team ${idx}:`, team);
-            });
-          });
-        }
+        const [tablesData, knockoutData] = await Promise.all([
+          getTables(),
+          leagueId === 'CL' ? getKnockoutStages() : Promise.resolve([])
+        ]);
+
+        const leagueData = tablesData.find(league => league.competition === leagueId);
         setStandings(leagueData || null);
+        setKnockoutStages(knockoutData);
       } catch (error) {
-        console.error('Failed to fetch table data:', error);
-        setError('Failed to fetch table data.');
+        console.error('Failed to fetch data:', error);
+        setError('Failed to fetch data.');
       }
     };
-    fetchTables();
+    fetchData();
   }, [leagueId]);
 
   if (error) {
@@ -49,8 +46,8 @@ export const LeagueTable: React.FC = () => {
     <div>
       <h2>{standings.competition} Table</h2>
       <StandingsList standings={standings.standings} />
+      {leagueId === 'CL' && <KnockoutTree matches={knockoutStages} />}
       <Link to={`/league/${leagueId}`} className="btn btn-primary mt-3">View Fixtures</Link>
     </div>
   );
 };
-

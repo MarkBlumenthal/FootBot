@@ -1,5 +1,32 @@
 /* footbot-frontend/FootBot-app/src/style.css */
 body {
-    padding: 20px;
-  }
-  
+  padding: 20px;
+}
+
+.knockout-tree {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.stage-container {
+  flex: 1;
+  padding: 10px;
+}
+
+.stage {
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-bottom: 20px;
+  background-color: #f9f9f9;
+}
+
+.match {
+  border-bottom: 1px solid #ddd;
+  padding: 10px 0;
+}
+
+.match:last-child {
+  border-bottom: none;
+}
+

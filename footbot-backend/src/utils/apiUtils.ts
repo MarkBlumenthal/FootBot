@@ -35,3 +35,15 @@ export const getTables = async () => {
   }));
   return results;
 };
+
+export const getKnockoutStages = async () => {
+  const competition = 'CL';
+  const response = await axios.get(`https://api.football-data.org/v4/competitions/${competition}/matches`, {
+    headers: { 'X-Auth-Token': API_KEY }
+  });
+  console.log(`Data for ${competition} knockout stages:`, JSON.stringify(response.data, null, 2));
+
+  // Process knockout stages data
+  const knockoutStages = response.data.matches.filter((match: any) => match.stage !== 'GROUP_STAGE');
+  return knockoutStages;
+};

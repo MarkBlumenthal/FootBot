@@ -40,6 +40,7 @@ export const getTables = async (): Promise<CompetitionStandings[]> => {
 };
 
 export interface Match {
+  stage: string; // Add this line
   homeTeam: { name: string };
   awayTeam: { name: string };
   score: {
@@ -67,7 +68,13 @@ export const getScores = async (): Promise<CompetitionMatches[]> => {
   }
 };
 
-
-
-
-
+export const getKnockoutStages = async (): Promise<Match[]> => {
+  try {
+    const response = await fetch('http://localhost:3000/api/tables/knockout');
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error('Error fetching knockout stages:', error);
+    return [];
+  }
+};
