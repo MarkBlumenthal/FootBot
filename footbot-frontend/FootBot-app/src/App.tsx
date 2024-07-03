@@ -8,7 +8,7 @@ import { LeagueTable } from './components/LeagueTable';
 const App: React.FC = () => {
   return (
     <div className="container">
-      <h1 className="my-4">Football Fixtures and Tables</h1>
+      <h1 className="my-4">Welcome To FootBot</h1>
       <nav className="nav nav-pills nav-justified">
         <Link className="nav-link" to="/">Home</Link>
         <Link className="nav-link" to="/league/PL">Premier League</Link>
