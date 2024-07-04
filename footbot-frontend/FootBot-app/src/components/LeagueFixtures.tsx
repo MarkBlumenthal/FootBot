@@ -52,9 +52,9 @@ export const LeagueFixtures: React.FC = () => {
         Object.keys(groupedMatches).map((date, index) => (
           <div key={index} className="mb-4">
             <h3>{date}</h3>
-            <div className="row">
+            <div className="d-flex flex-wrap"> {/* Use flexbox to wrap boxes */}
               {groupedMatches[date].map((match, idx) => (
-                <div key={idx} className="col-md-4 col-lg-2 mb-3">
+                <div key={idx} className="p-2"> {/* Add padding for spacing */}
                   <div className={styles.fixtureBox}>
                     <div className="teams">
                       <span>{normalizeTeamName(match.homeTeam.name)}</span>

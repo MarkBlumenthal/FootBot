@@ -1,29 +1,32 @@
 /* footbot-frontend/FootBot-app/src/components/fixtures.module.css */
 .fixtureBox {
-    width: 200px; /* Adjust width as needed */
-    height: 150px; /* Adjust height as needed */
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: #000; /* Black background */
-    color: #fff; /* White text */
-    padding: 10px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    font-weight: bold;
-  }
-  
-  .fixtureBox .teams {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-  }
-  
-  .fixtureBox .score {
-    font-weight: bold; /* Bold text for score */
-    margin-top: 10px;
-  }
+  width: 375px; /* Adjust width as needed */
+  height: 150px; /* Adjust height as needed */
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #000; /* Black background */
+  color: #fff; /* White text */
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  font-weight: bold;
+  margin: 10px; /* Add margin to create space between boxes */
+}
+
+.fixtureBox .teams {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.fixtureBox .score {
+  font-weight: bold; /* Bold text for score */
+  margin-top: 10px;
+}
+
   
   
