@@ -1,0 +1,16 @@
+/* footbot-frontend/FootBot-app/src/components/fixtures.module.css */
+.fixtureBox {
+    width: 200px; /* Adjust width as needed */
+    height: 150px; /* Adjust height as needed */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+  

@@ -6,6 +6,7 @@ import { getSeasonForDate } from '../utils';
 import { groupByDate } from '../utils/groupByDate';
 import LoadingModal from './LoadingModal';
 import { normalizeTeamName } from '../utils/normalizeTeamName';
+import styles from './fixtures.module.css'; // Import the CSS module
 
 export const LeagueFixtures: React.FC = () => {
   const { leagueId } = useParams<{ leagueId: string }>();
@@ -54,7 +55,7 @@ export const LeagueFixtures: React.FC = () => {
             <div className="row">
               {groupedMatches[date].map((match, idx) => (
                 <div key={idx} className="col-md-4 col-lg-2 mb-3">
-                  <div className="card h-100">
+                  <div className={styles.fixtureBox}>
                     <div className="card-body">
                       <h5 className="card-title">{normalizeTeamName(match.homeTeam.name)} vs {normalizeTeamName(match.awayTeam.name)}</h5>
                       <p className="card-text">
@@ -73,4 +74,3 @@ export const LeagueFixtures: React.FC = () => {
     </div>
   );
 };
-
