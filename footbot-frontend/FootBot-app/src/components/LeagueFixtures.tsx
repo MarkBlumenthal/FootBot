@@ -5,6 +5,7 @@ import { getScores, CompetitionMatches } from '../services/api';
 import { getSeasonForDate } from '../utils';
 import { groupByDate } from '../utils/groupByDate';
 import LoadingModal from './LoadingModal';
+import { normalizeTeamName } from '../utils/normalizeTeamName';
 
 export const LeagueFixtures: React.FC = () => {
   const { leagueId } = useParams<{ leagueId: string }>();
@@ -55,7 +56,7 @@ export const LeagueFixtures: React.FC = () => {
                 <div key={idx} className="col-md-4 col-lg-2 mb-3">
                   <div className="card h-100">
                     <div className="card-body">
-                      <h5 className="card-title">{match.homeTeam.name} vs {match.awayTeam.name}</h5>
+                      <h5 className="card-title">{normalizeTeamName(match.homeTeam.name)} vs {normalizeTeamName(match.awayTeam.name)}</h5>
                       <p className="card-text">
                         Full Time: {match.score.fullTime.home} - {match.score.fullTime.away}
                       </p>
@@ -72,3 +73,4 @@ export const LeagueFixtures: React.FC = () => {
     </div>
   );
 };
+

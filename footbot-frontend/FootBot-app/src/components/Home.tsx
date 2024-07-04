@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { getTeamFixtures, Match } from '../services/api';
 import LoadingModal from './LoadingModal';
+import { normalizeTeamName } from '../utils/normalizeTeamName';
 
 export const Home: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -68,7 +69,7 @@ export const Home: React.FC = () => {
             <h4>Recent Fixture</h4>
             {recentFixture ? (
               <div>
-                <div>{recentFixture.homeTeam.name} vs {recentFixture.awayTeam.name}</div>
+                <div>{normalizeTeamName(recentFixture.homeTeam.name)} vs {normalizeTeamName(recentFixture.awayTeam.name)}</div>
                 <div>Full Time: {recentFixture.score.fullTime.home} - {recentFixture.score.fullTime.away}</div>
                 <div>{new Date(recentFixture.utcDate).toLocaleDateString()}</div>
               </div>
@@ -78,7 +79,7 @@ export const Home: React.FC = () => {
             <h4>Next Fixture</h4>
             {nextFixture ? (
               <div>
-                <div>{nextFixture.homeTeam.name} vs {nextFixture.awayTeam.name}</div>
+                <div>{normalizeTeamName(nextFixture.homeTeam.name)} vs {normalizeTeamName(nextFixture.awayTeam.name)}</div>
                 <div>Full Time: {nextFixture.score.fullTime.home} - {nextFixture.score.fullTime.away}</div>
                 <div>{new Date(nextFixture.utcDate).toLocaleDateString()}</div>
               </div>
@@ -103,3 +104,5 @@ export const Home: React.FC = () => {
     </div>
   );
 };
+
+

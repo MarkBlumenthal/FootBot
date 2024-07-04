@@ -1,6 +1,7 @@
 // footbot-frontend/FootBot-app/src/components/MatchList.tsx
 import React from 'react';
 import { Match } from '../services/api';
+import { normalizeTeamName } from '../utils/normalizeTeamName';
 
 interface MatchListProps {
   matches: Match[];
@@ -18,7 +19,7 @@ export const MatchList: React.FC<MatchListProps> = ({ matches }) => {
         return (
           <div key={index} className="list-group-item list-group-item-action">
             <div>
-              {match.homeTeam.name} vs {match.awayTeam.name}
+              {normalizeTeamName(match.homeTeam.name)} vs {normalizeTeamName(match.awayTeam.name)}
             </div>
             <div>
               Full Time: {match.score.fullTime.home} - {match.score.fullTime.away}
@@ -30,3 +31,4 @@ export const MatchList: React.FC<MatchListProps> = ({ matches }) => {
     </div>
   );
 };
+

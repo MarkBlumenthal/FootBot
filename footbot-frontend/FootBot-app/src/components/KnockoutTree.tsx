@@ -2,6 +2,7 @@
 import React from 'react';
 import { Match } from '../services/api';
 import './KnockoutTree.css';
+import { normalizeTeamName } from '../utils/normalizeTeamName';
 
 interface KnockoutTreeProps {
   matches: Match[];
@@ -23,11 +24,11 @@ const KnockoutTree: React.FC<KnockoutTreeProps> = ({ matches }) => {
           <div className="matches">
             {matchesByStage[stage].map((match, idx) => (
               <div key={idx} className="match">
-                <div className="team">{match.homeTeam.name}</div>
+                <div className="team">{normalizeTeamName(match.homeTeam.name)}</div>
                 <div className="score">
                   {match.score.fullTime.home} - {match.score.fullTime.away}
                 </div>
-                <div className="team">{match.awayTeam.name}</div>
+                <div className="team">{normalizeTeamName(match.awayTeam.name)}</div>
               </div>
             ))}
           </div>
@@ -38,9 +39,4 @@ const KnockoutTree: React.FC<KnockoutTreeProps> = ({ matches }) => {
 };
 
 export default KnockoutTree;
-
-
-
-
-
 
