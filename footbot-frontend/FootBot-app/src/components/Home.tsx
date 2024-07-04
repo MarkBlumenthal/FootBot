@@ -61,7 +61,7 @@ export const Home: React.FC = () => {
 
   return (
     <div>
-      <div style={{ border: '1px solid #ccc', padding: '20px', marginBottom: '20px' }}>
+      <div style={{ border: '1px solid #ccc', padding: '20px', marginBottom: '20px', width: '300px', height: '300px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
         {searchConducted && (loading ? (
           <p>Loading...</p>
         ) : error ? (
