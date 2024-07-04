@@ -11,6 +11,7 @@ export const Home: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const [showModal, setShowModal] = useState(false);
+  const [searchConducted, setSearchConducted] = useState(false); // New state to track if a search has been conducted
 
   const handleSearch = async () => {
     if (!searchTerm) return;
@@ -18,6 +19,7 @@ export const Home: React.FC = () => {
     setLoading(true);
     setError(null);
     setShowModal(false);
+    setSearchConducted(true); // Set to true when a search is conducted
 
     try {
       const data = await getTeamFixtures(searchTerm);
@@ -60,7 +62,7 @@ export const Home: React.FC = () => {
   return (
     <div>
       <div style={{ border: '1px solid #ccc', padding: '20px', marginBottom: '20px' }}>
-        {loading ? (
+        {searchConducted && (loading ? (
           <p>Loading...</p>
         ) : error ? (
           <p>{error}</p>
@@ -87,7 +89,7 @@ export const Home: React.FC = () => {
               <p>No upcoming fixtures available.</p>
             )}
           </div>
-        )}
+        ))}
       </div>
       <input
         type="text"
@@ -104,5 +106,3 @@ export const Home: React.FC = () => {
     </div>
   );
 };
-
-
