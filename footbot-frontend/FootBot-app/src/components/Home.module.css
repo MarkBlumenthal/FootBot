@@ -8,5 +8,31 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    margin: 0 auto; /* Center the container horizontally */
   }
+  
+  .searchContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .searchBar {
+    width: 300px; /* Match the width of the white box */
+    padding: 10px;
+    margin: 10px 0; /* Add space between elements */
+  }
+  
+  .searchButton {
+    width: 50px; /* Make the button circular */
+    height: 50px; /* Make the button circular */
+    border-radius: 50%; /* Make the button circular */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  
+  
   

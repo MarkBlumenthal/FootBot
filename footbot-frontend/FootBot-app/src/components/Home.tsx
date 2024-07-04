@@ -61,7 +61,7 @@ export const Home: React.FC = () => {
   };
 
   return (
-    <div>
+    <div className={styles.searchContainer}>
       <div className={styles.container}>
         {searchConducted && (loading ? (
           <p>Loading...</p>
@@ -98,13 +98,14 @@ export const Home: React.FC = () => {
         onChange={(e) => setSearchTerm(e.target.value)}
         onKeyPress={handleKeyPress}
         placeholder="Search for a team"
-        style={{ marginBottom: '10px', width: '100%', padding: '10px' }}
+        className={styles.searchBar}
       />
-      <button onClick={handleSearch} className="btn btn-primary">
+      <button onClick={handleSearch} className={`btn btn-primary ${styles.searchButton}`}>
         Search
       </button>
       <LoadingModal show={showModal} handleClose={() => setShowModal(false)} />
     </div>
   );
 };
+
 
