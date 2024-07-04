@@ -25,8 +25,8 @@
   }
   
   .searchButton {
-    width: 50px; /* Make the button circular */
-    height: 50px; /* Make the button circular */
+    width: 55px; /* Make the button circular */
+    height: 55px; /* Make the button circular */
     border-radius: 50%; /* Make the button circular */
     display: flex;
     justify-content: center;
