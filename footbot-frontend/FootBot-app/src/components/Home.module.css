@@ -1,0 +1,12 @@
+/* footbot-frontend/FootBot-app/src/components/Home.module.css */
+.container {
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin-bottom: 20px;
+    width: 300px;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  

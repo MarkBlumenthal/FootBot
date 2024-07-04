@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { getTeamFixtures, Match } from '../services/api';
 import LoadingModal from './LoadingModal';
 import { normalizeTeamName } from '../utils/normalizeTeamName';
+import styles from './Home.module.css'; // Import the CSS module
 
 export const Home: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -61,7 +62,7 @@ export const Home: React.FC = () => {
 
   return (
     <div>
-      <div style={{ border: '1px solid #ccc', padding: '20px', marginBottom: '20px', width: '300px', height: '300px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+      <div className={styles.container}>
         {searchConducted && (loading ? (
           <p>Loading...</p>
         ) : error ? (
@@ -106,3 +107,4 @@ export const Home: React.FC = () => {
     </div>
   );
 };
+
