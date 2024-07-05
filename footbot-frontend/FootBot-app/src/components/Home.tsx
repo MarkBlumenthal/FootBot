@@ -62,7 +62,8 @@ export const Home: React.FC = () => {
 
   return (
     <div className={styles.homeBackground}>
-      <div className={styles.contentContainer}> {/* Wrap content in contentContainer */}
+      <div className={styles.overlayImage}></div> {/* Add the overlay image */}
+      <div className={styles.contentContainer}>
         <div className={styles.searchContainer}>
           <div className={styles.container}>
             {searchConducted && (loading ? (
@@ -111,5 +112,3 @@ export const Home: React.FC = () => {
     </div>
   );
 };
-
-
