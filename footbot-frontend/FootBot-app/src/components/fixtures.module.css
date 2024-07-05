@@ -30,6 +30,11 @@
   width: 50%;
 }
 
+.fixtureBox .vs {
+  width: 100px; /* Adjust width as needed */
+  height: 100px;
+}
+
 .fixtureBox .score {
   font-weight: bold; /* Bold text for score */
   margin-top: 10px;

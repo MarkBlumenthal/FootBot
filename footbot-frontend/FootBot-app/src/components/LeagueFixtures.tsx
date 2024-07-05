@@ -62,7 +62,7 @@ export const LeagueFixtures: React.FC = () => {
                         <span>{normalizeTeamName(match.homeTeam.name)}</span>
                         <img src={getTeamLogo(leagueId!, match.homeTeam.name)} alt={match.homeTeam.name} /> {/* Logo */}
                       </div>
-                      <span>vs</span>
+                      <img src="/images/vs.png" alt="vs" className={styles.vs} /> {/* VS Image */}
                       <div className={styles.team}>
                         <span>{normalizeTeamName(match.awayTeam.name)}</span>
                         <img src={getTeamLogo(leagueId!, match.awayTeam.name)} alt={match.awayTeam.name} /> {/* Logo */}
@@ -83,9 +83,6 @@ export const LeagueFixtures: React.FC = () => {
     </div>
   );
 };
-
-
-
 
 
 
