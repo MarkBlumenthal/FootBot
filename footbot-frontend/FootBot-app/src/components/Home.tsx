@@ -61,49 +61,53 @@ export const Home: React.FC = () => {
   };
 
   return (
-    <div className={styles.searchContainer}>
-      <div className={styles.container}>
-        {searchConducted && (loading ? (
-          <p>Loading...</p>
-        ) : error ? (
-          <p>{error}</p>
-        ) : (
-          <div>
-            <h4>Recent Fixture</h4>
-            {recentFixture ? (
-              <div>
-                <div>{normalizeTeamName(recentFixture.homeTeam.name)} vs {normalizeTeamName(recentFixture.awayTeam.name)}</div>
-                <div>Full Time: {recentFixture.score.fullTime.home} - {recentFixture.score.fullTime.away}</div>
-                <div>{new Date(recentFixture.utcDate).toLocaleDateString()}</div>
-              </div>
+    <div className={styles.homeBackground}>
+      <div className={styles.contentContainer}> {/* Wrap content in contentContainer */}
+        <div className={styles.searchContainer}>
+          <div className={styles.container}>
+            {searchConducted && (loading ? (
+              <p>Loading...</p>
+            ) : error ? (
+              <p>{error}</p>
             ) : (
-              <p>No recent fixtures available.</p>
-            )}
-            <h4>Next Fixture</h4>
-            {nextFixture ? (
               <div>
-                <div>{normalizeTeamName(nextFixture.homeTeam.name)} vs {normalizeTeamName(nextFixture.awayTeam.name)}</div>
-                <div>Full Time: {nextFixture.score.fullTime.home} - {nextFixture.score.fullTime.away}</div>
-                <div>{new Date(nextFixture.utcDate).toLocaleDateString()}</div>
+                <h4>Recent Fixture</h4>
+                {recentFixture ? (
+                  <div>
+                    <div>{normalizeTeamName(recentFixture.homeTeam.name)} vs {normalizeTeamName(recentFixture.awayTeam.name)}</div>
+                    <div>Full Time: {recentFixture.score.fullTime.home} - {recentFixture.score.fullTime.away}</div>
+                    <div>{new Date(recentFixture.utcDate).toLocaleDateString()}</div>
+                  </div>
+                ) : (
+                  <p>No recent fixtures available.</p>
+                )}
+                <h4>Next Fixture</h4>
+                {nextFixture ? (
+                  <div>
+                    <div>{normalizeTeamName(nextFixture.homeTeam.name)} vs {normalizeTeamName(nextFixture.awayTeam.name)}</div>
+                    <div>Full Time: {nextFixture.score.fullTime.home} - {nextFixture.score.fullTime.away}</div>
+                    <div>{new Date(nextFixture.utcDate).toLocaleDateString()}</div>
+                  </div>
+                ) : (
+                  <p>No upcoming fixtures available.</p>
+                )}
               </div>
-            ) : (
-              <p>No upcoming fixtures available.</p>
-            )}
+            ))}
           </div>
-        ))}
+          <input
+            type="text"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            onKeyPress={handleKeyPress}
+            placeholder="Search for a team"
+            className={styles.searchBar}
+          />
+          <button onClick={handleSearch} className={`btn btn-primary ${styles.searchButton}`}>
+            Search
+          </button>
+          <LoadingModal show={showModal} handleClose={() => setShowModal(false)} />
+        </div>
       </div>
-      <input
-        type="text"
-        value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
-        onKeyPress={handleKeyPress}
-        placeholder="Search for a team"
-        className={styles.searchBar}
-      />
-      <button onClick={handleSearch} className={`btn btn-primary ${styles.searchButton}`}>
-        Search
-      </button>
-      <LoadingModal show={showModal} handleClose={() => setShowModal(false)} />
     </div>
   );
 };

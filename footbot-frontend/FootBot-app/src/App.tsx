@@ -4,11 +4,12 @@ import { Route, Routes, Link } from 'react-router-dom';
 import { Home } from './components/Home';
 import { LeagueFixtures } from './components/LeagueFixtures';
 import { LeagueTable } from './components/LeagueTable';
+import styles from './components/Home.module.css'; // Import the CSS module
 
 const App: React.FC = () => {
   return (
     <div className="container">
-      <h1 className="my-4">Welcome To FootBot</h1>
+      <h1 className={`my-4 ${styles.heading}`}>FootBot</h1> {/* Apply the heading class */}
       <nav className="nav nav-pills nav-justified">
         <Link className="nav-link" to="/">Home</Link>
         <Link className="nav-link" to="/league/PL">Premier League</Link>
@@ -27,3 +28,4 @@ const App: React.FC = () => {
 };
 
 export default App;
+
