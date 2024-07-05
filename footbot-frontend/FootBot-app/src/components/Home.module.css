@@ -35,6 +35,7 @@
   background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background for readability */
   color: white; /* White text for contrast */
   position: relative; /* Ensure it is positioned relative to the parent */
+  padding-top: 120px; /* Add padding to move content down */
 }
 
 .container {
@@ -79,6 +80,7 @@
   text-align: center; /* Center the text */
   margin-top: 20px; /* Add some space above the heading */
 }
+
 
 
 
