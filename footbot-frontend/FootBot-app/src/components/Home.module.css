@@ -35,7 +35,7 @@
   background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background for readability */
   color: white; /* White text for contrast */
   position: relative; /* Ensure it is positioned relative to the parent */
-  padding-top: 120px; /* Add padding to move content down */
+  padding-top: 160px; /* Add padding to move content down */
 }
 
 .container {

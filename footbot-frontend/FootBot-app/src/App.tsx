@@ -1,4 +1,4 @@
-// footbot-frontend/FootBot-app/src/App.tsx
+// // footbot-frontend/FootBot-app/src/App.tsx
 import React from 'react';
 import { Route, Routes, Link } from 'react-router-dom';
 import { Home } from './components/Home';
@@ -48,3 +48,16 @@ const App: React.FC = () => {
 };
 
 export default App;
+
+
+
+
+
+
+
+
+
+
+
+
+
