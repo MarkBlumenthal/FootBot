@@ -48,4 +48,49 @@
   margin-top: 5px; /* Add some space above the images */
 }
 
+/* Small screens */
+@media (max-width: 412px) {
+  .fixtureBox {
+    max-width: 300px; /* Adjust width */
+    margin-left: 35px;
+  }
+  .fixtureBox .vs {
+    width: 80px; /* Adjust width */
+    height: 80px;
+  }
+}
 
+/* Small screens */
+@media (max-width: 360px) {
+  .fixtureBox {
+    max-width: 300px; /* Adjust width */
+    margin-left: 10px;
+  }
+  .fixtureBox .vs {
+    width: 80px; /* Adjust width */
+    height: 80px;
+  }
+}
+
+/* Medium screens */
+@media (min-width: 601px) and (max-width: 1024px) {
+  .fixtureBox {
+    max-width: 400px; /* Adjust width */
+  }
+  .fixtureBox .vs {
+    width: 120px; /* Adjust width */
+    height: 120px;
+  
+  }
+}
+
+/* Large screens */
+@media (min-width: 1025px) {
+  .fixtureBox {
+    max-width: 500px; /* Adjust width */
+  }
+  .fixtureBox .vs {
+    width: 150px; /* Adjust width */
+    height: 150px;
+  }
+}

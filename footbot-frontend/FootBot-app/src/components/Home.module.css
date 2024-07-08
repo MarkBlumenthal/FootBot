@@ -81,9 +81,48 @@
 }
 
 
+/* Small screens */
+@media (max-width: 600px) {
+  .container {
+    max-width: 250px; /* Adjust width */
+    max-height: 220px;
+    margin-top: 50px;
+  }
+  .searchBar {
+    max-width: 200px; /* Adjust width */
+  }
+}
+
+/* Medium screens */
+@media (min-width: 601px) and (max-width: 1024px) {
+  .container {
+    max-width: 300px; /* Adjust width */
+  }
+  .searchBar {
+    max-width: 300px; /* Adjust width */
+  }
+}
+
+/* Large screens */
+@media (min-width: 1025px) {
+  .container {
+    max-width: 400px; /* Adjust width */
+  }
+  .searchBar {
+    max-width: 400px; /* Adjust width */
+  }
+}
 
 
-
-
-
+/* Small screens */
+@media (max-width: 360px) {
+  .container {
+    max-width: 250px; /* Adjust width */
+    max-height: 220px;
+    margin-top: 150px;
+  }
+  .searchBar {
+    max-width: 200px; /* Adjust width */
+  }
+}
   
