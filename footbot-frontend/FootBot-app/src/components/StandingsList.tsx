@@ -1,12 +1,14 @@
 // footbot-frontend/FootBot-app/src/components/StandingsList.tsx
 import React from 'react';
 import { Standing } from '../services/api';
+import { getTeamLogo } from '../utils/getTeamLogo'; // Import the utility function
 
 interface StandingsListProps {
   standings: Standing[];
+  leagueId: string; // Add leagueId prop
 }
 
-export const StandingsList: React.FC<StandingsListProps> = ({ standings }) => {
+export const StandingsList: React.FC<StandingsListProps> = ({ standings, leagueId }) => {
   if (!standings || standings.length === 0) {
     return <p>No standings available.</p>;
   }
@@ -35,7 +37,14 @@ export const StandingsList: React.FC<StandingsListProps> = ({ standings }) => {
               {standing.table.map((team, idx) => (
                 <tr key={`${team.team.name}-${idx}`}>
                   <th scope="row">{idx + 1}</th> {/* Generate position based on index */}
-                  <td>{team.team.name}</td>
+                  <td>
+                    <img 
+                      src={getTeamLogo(leagueId, team.team.name)} 
+                      alt={team.team.name} 
+                      style={{ width: '20px', height: '20px', marginRight: '10px' }}
+                    />
+                    {team.team.name}
+                  </td>
                   <td>{team.playedGames}</td>
                   <td>{team.won}</td>
                   <td>{team.draw}</td>

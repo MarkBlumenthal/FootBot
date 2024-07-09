@@ -61,14 +61,10 @@ export const LeagueTable: React.FC = () => {
   return (
     <div>
       <h2>{standings.competition} Table - Season {season}</h2>
-      <StandingsList standings={standings.standings} />
+      <StandingsList standings={standings.standings} leagueId={leagueId!} /> {/* Pass leagueId */}
       {leagueId === 'CL' && <KnockoutTree matches={knockoutStages} />}
       <Link to={`/league/${leagueId}`} className="btn btn-primary mt-3">View Fixtures</Link>
       <LoadingModal show={showModal} handleClose={() => setShowModal(false)} />
     </div>
   );
 };
-
-
-
-
