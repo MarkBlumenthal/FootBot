@@ -23,14 +23,14 @@ export const StandingsList: React.FC<StandingsListProps> = ({ standings, leagueI
               <tr>
                 <th scope="col">Position</th>
                 <th scope="col">Team</th>
-                <th scope="col">Played</th>
-                <th scope="col">Won</th>
-                <th scope="col">Draw</th>
-                <th scope="col">Lost</th>
-                <th scope="col">Goals For</th>
-                <th scope="col">Goals Against</th>
-                <th scope="col">Goal Difference</th>
-                <th scope="col">Points</th>
+                <th scope="col">PL</th>
+                <th scope="col">W</th>
+                <th scope="col">D</th>
+                <th scope="col">L</th>
+                <th scope="col">GF</th>
+                <th scope="col">GA</th>
+                <th scope="col">GD</th>
+                <th scope="col">Pts</th>
               </tr>
             </thead>
             <tbody>
