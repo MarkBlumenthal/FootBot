@@ -1,6 +1,6 @@
 /* footbot-frontend/FootBot-app/src/components/Home.module.css */
 .homeBackground {
-  background-image: url('/images/pitch1.jpeg'); /* Set background image */
+  background-image: url('/images/pitch4.jpeg'); /* Set background image */
   background-size: cover; /* Cover the entire area */
   background-position: center; /* Center the image */
   background-repeat: no-repeat; /* Prevent image repetition */
