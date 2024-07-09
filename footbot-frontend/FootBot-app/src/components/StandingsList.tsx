@@ -33,8 +33,8 @@ export const StandingsList: React.FC<StandingsListProps> = ({ standings }) => {
             </thead>
             <tbody>
               {standing.table.map((team, idx) => (
-                <tr key={`${team.position}-${idx}`}>
-                  <th scope="row">{team.position}</th>
+                <tr key={`${team.team.name}-${idx}`}>
+                  <th scope="row">{idx + 1}</th> {/* Generate position based on index */}
                   <td>{team.team.name}</td>
                   <td>{team.playedGames}</td>
                   <td>{team.won}</td>
@@ -53,11 +53,4 @@ export const StandingsList: React.FC<StandingsListProps> = ({ standings }) => {
     </div>
   );
 };
-
-
-
-
-
-
-
 
