@@ -1,0 +1,42 @@
+/* Default table styling */
+.table {
+    width: 100%;
+    min-width: 600px;
+  }
+  
+
+  img {
+    display: block;
+    width: auto;
+    height: auto;
+  }
+  
+  img[src=""] {
+    visibility: hidden;
+  }
+
+  .team-logo-container {
+    display: flex;
+    align-items: center;
+  }
+  
+  .team-logo-container img {
+    margin-right: 10px; /* Add space between the logo and the team name */
+  }
+
+  /* Media query for smaller screens */
+  @media (max-width: 768px) {
+    .table th,
+    .table td {
+      font-size: 0.8em; /* Reduce font size */
+      padding: 0.5em; /* Reduce padding */
+    }
+  
+    .table th.gf,
+    .table th.ga,
+    .table td.gf,
+    .table td.ga {
+      display: none; /* Hide Goals For and Goals Against columns */
+    }
+  }
+  
