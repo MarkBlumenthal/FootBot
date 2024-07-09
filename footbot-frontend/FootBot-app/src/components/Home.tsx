@@ -12,7 +12,7 @@ export const Home: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const [showModal, setShowModal] = useState(false);
-  const [searchConducted, setSearchConducted] = useState(false); // New state to track if a search has been conducted
+  const [searchConducted, setSearchConducted] = useState(false); // State to track if a search has been conducted
 
   const handleSearch = async () => {
     if (!searchTerm) return;
@@ -65,40 +65,47 @@ export const Home: React.FC = () => {
       <div className={styles.overlayImage}></div> {/* Add the overlay image */}
       <div className={styles.contentContainer}>
         <div className={styles.searchContainer}>
-          <div className={styles.container}>
-            {searchConducted && (loading ? (
-              <p>Loading...</p>
-            ) : error ? (
-              <p>{error}</p>
-            ) : (
-              <div>
-                <h4>Recent Fixture</h4>
-                {recentFixture ? (
-                  <div>
-                    <div>{normalizeTeamName(recentFixture.homeTeam.name)} vs {normalizeTeamName(recentFixture.awayTeam.name)}</div>
-                    <div>Full Time: {recentFixture.score.fullTime.home} - {recentFixture.score.fullTime.away}</div>
-                    <div>{new Date(recentFixture.utcDate).toLocaleDateString()}</div>
-                  </div>
-                ) : (
-                  <p>No recent fixtures available.</p>
-                )}
-                <h4>Next Fixture</h4>
-                {nextFixture ? (
-                  <div>
-                    <div>{normalizeTeamName(nextFixture.homeTeam.name)} vs {normalizeTeamName(nextFixture.awayTeam.name)}</div>
-                    <div>Full Time: {nextFixture.score.fullTime.home} - {nextFixture.score.fullTime.away}</div>
-                    <div>{new Date(nextFixture.utcDate).toLocaleDateString()}</div>
-                  </div>
-                ) : (
-                  <p>No upcoming fixtures available.</p>
-                )}
-              </div>
-            ))}
-          </div>
+          {searchConducted && (
+            <div className={styles.container}>
+              {loading ? (
+                <p>Loading...</p>
+              ) : error ? (
+                <p>{error}</p>
+              ) : (
+                <div>
+                  <h4>Recent Fixture</h4>
+                  {recentFixture ? (
+                    <div>
+                      <div>{normalizeTeamName(recentFixture.homeTeam.name)} vs {normalizeTeamName(recentFixture.awayTeam.name)}</div>
+                      <div>Full Time: {recentFixture.score.fullTime.home} - {recentFixture.score.fullTime.away}</div>
+                      <div>{new Date(recentFixture.utcDate).toLocaleDateString()}</div>
+                    </div>
+                  ) : (
+                    <p>No recent fixtures available.</p>
+                  )}
+                  <h4>Next Fixture</h4>
+                  {nextFixture ? (
+                    <div>
+                      <div>{normalizeTeamName(nextFixture.homeTeam.name)} vs {normalizeTeamName(nextFixture.awayTeam.name)}</div>
+                      <div>Full Time: {nextFixture.score.fullTime.home} - {nextFixture.score.fullTime.away}</div>
+                      <div>{new Date(nextFixture.utcDate).toLocaleDateString()}</div>
+                    </div>
+                  ) : (
+                    <p>No upcoming fixtures available.</p>
+                  )}
+                </div>
+              )}
+            </div>
+          )}
           <input
             type="text"
             value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
+            onChange={(e) => {
+              setSearchTerm(e.target.value);
+              if (e.target.value === '') {
+                setSearchConducted(false); // Reset search conducted state if input is cleared
+              }
+            }}
             onKeyPress={handleKeyPress}
             placeholder="Search for a team"
             className={styles.searchBar}
@@ -112,3 +119,4 @@ export const Home: React.FC = () => {
     </div>
   );
 };
+

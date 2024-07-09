@@ -1,4 +1,4 @@
-// // footbot-frontend/FootBot-app/src/components/StandingsList.tsx
+// footbot-frontend/FootBot-app/src/components/StandingsList.tsx
 import React from 'react';
 import { Standing } from '../services/api';
 import { getTeamLogo } from '../utils/getTeamLogo'; // Import the utility function
