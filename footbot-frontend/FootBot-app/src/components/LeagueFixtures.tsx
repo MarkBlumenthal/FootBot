@@ -48,7 +48,12 @@ export const LeagueFixtures: React.FC = () => {
 
   return (
     <div>
-      <h2>{matches?.competition} Fixtures - Season {currentSeason}</h2>
+      <div className="d-flex justify-content-between align-items-center my-4">
+        <h2>{matches?.competition} Fixtures - Season {currentSeason}</h2>
+        <Link to={`/league/${leagueId}/table/${currentSeason}`} className="btn btn-primary">
+          View Table
+        </Link>
+      </div>
       {error ? <p>{error}</p> : (
         Object.keys(groupedMatches).map((date, index) => (
           <div key={index} className="mb-4">
@@ -78,12 +83,10 @@ export const LeagueFixtures: React.FC = () => {
           </div>
         ))
       )}
-      <Link to={`/league/${leagueId}/table/${currentSeason}`} className="btn btn-primary mt-3">View Table</Link>
+      <Link to={`/league/${leagueId}/table/${currentSeason}`} className="btn btn-primary mt-3">
+        View Table
+      </Link>
       <LoadingModal show={showModal} handleClose={() => setShowModal(false)} />
     </div>
   );
 };
-
-
-
-
