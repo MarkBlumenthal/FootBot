@@ -81,6 +81,79 @@
 }
 
 
+
+/* Small screens */
+@media (max-width: 360px) {
+  .container {
+    max-width: 250px; /* Adjust width */
+    max-height: 220px;
+    margin-top: 150px;
+  }
+  .searchBar {
+    max-width: 200px; /* Adjust width */
+  }
+}
+
+
+
+/* Small screens */
+@media (max-width: 375px) {
+  .container {
+    max-width: 250px; /* Adjust width */
+    max-height: 220px;
+    margin-top: 150px;
+  }
+  .searchBar {
+    max-width: 200px; /* Adjust width */
+  }
+}
+
+
+/* Small screens */
+@media (max-width: 412px) {
+  .container {
+    max-width: 250px; /* Adjust width */
+    max-height: 340px !important;
+    margin-top: 150px;
+  }
+  .searchBar {
+    max-width: 200px; /* Adjust width */
+  }
+}
+
+
+
+/* Small screens */
+@media (max-width: 414px) {
+  .container {
+    max-width: 250px; /* Adjust width */
+    max-height: 340px !important;
+    margin-top: 150px;
+  }
+  .searchBar {
+    max-width: 200px; /* Adjust width */
+  }
+}
+
+
+
+/* Small screens */
+@media (max-width: 430px) {
+  .container {
+    max-width: 250px; /* Adjust width */
+    max-height: 340px !important;
+    margin-top: 150px;
+  }
+  .searchBar {
+    max-width: 200px; /* Adjust width */
+  }
+}
+
+
+
+
+
+
 /* Small screens */
 @media (max-width: 600px) {
   .container {
@@ -114,15 +187,5 @@
 }
 
 
-/* Small screens */
-@media (max-width: 360px) {
-  .container {
-    max-width: 250px; /* Adjust width */
-    max-height: 220px;
-    margin-top: 150px;
-  }
-  .searchBar {
-    max-width: 200px; /* Adjust width */
-  }
-}
+
   
