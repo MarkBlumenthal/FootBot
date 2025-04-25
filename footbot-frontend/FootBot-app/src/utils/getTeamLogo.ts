@@ -1,5 +1,10 @@
 // footbot-frontend/FootBot-app/src/utils/getTeamLogo.ts
-export const getTeamLogo = (leagueId: string, teamName: string): string => {
+export const getTeamLogo = (leagueId: string, teamName: string | null | undefined): string => {
+  if (!teamName) {
+    console.log(`Missing team name for league ${leagueId}`);
+    return '/logos/default-team.png'; // Return a default logo path
+  }
+
   const normalizedTeamName = teamName
     .toLowerCase()
     .replace(/\b(fc|sc|cf|rc|ca|cd|de|rcd|ud|club|ssc|cfc|acf|us|as|ss|bc|calcio|vfl|sv|vfb|tsg|wanderers|afc|&|hove|albion|fk|sk)\b/gi, '')
@@ -11,8 +16,3 @@ export const getTeamLogo = (leagueId: string, teamName: string): string => {
   console.log(`Logo path for ${teamName} in ${leagueId}: ${logoPath}`); // Debugging log
   return logoPath;
 };
-
-
-
-
-  
