@@ -2,7 +2,7 @@
 import React from 'react';
 import { Match } from '../services/api';
 import { normalizeTeamName } from '../utils/normalizeTeamName';
-import { getTeamLogo } from '../utils/getTeamLogo'; // Import the utility function
+import { getTeamLogo } from '../utils/getTeamLogo';
 
 interface MatchListProps {
   matches: Match[];
@@ -18,18 +18,26 @@ export const MatchList: React.FC<MatchListProps> = ({ matches, leagueId }) => {
     <div className="list-group">
       {matches.map((match, index) => {
         const matchDate = new Date(match.utcDate).toLocaleDateString(); // Format the date
+        const homeTeamName = match.homeTeam.name || '';
+        const awayTeamName = match.awayTeam.name || '';
         return (
           <div key={index} className="list-group-item list-group-item-action">
             <div>
-              {normalizeTeamName(match.homeTeam.name)} 
-              <img src={getTeamLogo(leagueId, match.homeTeam.name)} alt={match.homeTeam.name} /> {/* Logo */}
+              {normalizeTeamName(homeTeamName)}
+              <img 
+                src={getTeamLogo(leagueId, homeTeamName) || undefined} 
+                alt={homeTeamName || undefined} 
+              />
             </div>
             <div>
               vs
             </div>
             <div>
-              {normalizeTeamName(match.awayTeam.name)}
-              <img src={getTeamLogo(leagueId, match.awayTeam.name)} alt={match.awayTeam.name} /> {/* Logo */}
+              {normalizeTeamName(awayTeamName)}
+              <img 
+                src={getTeamLogo(leagueId, awayTeamName) || undefined} 
+                alt={awayTeamName || undefined} 
+              />
             </div>
             <div>
               Full Time: {match.score.fullTime.home} - {match.score.fullTime.away}
@@ -41,4 +49,3 @@ export const MatchList: React.FC<MatchListProps> = ({ matches, leagueId }) => {
     </div>
   );
 };
-
