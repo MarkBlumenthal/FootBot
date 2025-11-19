@@ -1,191 +1,316 @@
 /* footbot-frontend/FootBot-app/src/components/Home.module.css */
+
+/* Whole page background */
 .homeBackground {
-  background-image: url('/images/pitch4.jpeg'); /* Set background image */
-  background-size: cover; /* Cover the entire area */
-  background-position: center; /* Center the image */
-  background-repeat: no-repeat; /* Prevent image repetition */
   width: 100%;
-  height: 100vh; /* Full height of the viewport */
-  position: fixed; /* Fix position to prevent scrolling */
-  top: 0; /* Ensure it starts at the top */
-  left: 0; /* Ensure it starts at the left */
-  z-index: -2; /* Ensure it is behind other elements */
+  min-height: 100vh;
+  background: #f5f7fb;              /* light grey/white like your screenshot */
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 140px;               /* leaves space under the green navbar */
+  padding-bottom: 48px;
 }
 
+/* We don’t need the big overlay image anymore – hide it */
 .overlayImage {
-  background-image: url('/images/football2.png'); /* Set overlay image */
-  background-size: contain; /* Ensure the overlay image is contained within the div */
-  background-position: center; /* Center the image */
-  background-repeat: no-repeat; /* Prevent image repetition */
-  width: 100%;
-  height: 100vh; /* Full height of the viewport */
-  position: fixed; /* Fix position to prevent scrolling */
-  top: 50px; /* Move the image down slightly */
-  left: 0; /* Ensure it starts at the left */
-  z-index: -1; /* Ensure it is above the background image but behind other elements */
+  background-image: url('/images/football2.png'); /* same image as before */
+  background-size: contain;          /* keep full image, but scale it down */
+  background-position: center;
+  background-repeat: no-repeat;
+
+  width: 420px;                      /* ⬅️ was probably much larger */
+  height: 260px;                     /* tweak this to taste */
+  max-width: 80vw;                   /* don’t exceed screen width on small devices */
+  border-radius: 32px;
+  margin: 0 auto 32px auto;          /* center horizontally + add space below */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  /* optional subtle shadow so it feels like a card */
+  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.45);
 }
 
+
+/* Centers all content on the page */
 .contentContainer {
   width: 100%;
-  height: 100vh;
+  max-width: 960px;
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
-  color: white; /* White text for contrast */
-  position: relative; /* Ensure it is positioned relative to the parent */
-  padding-top: 160px; /* Add padding to move content down */
+  color: #111827;                   /* dark slate text */
+  padding: 0 1.5rem;
 }
+
+/* Wraps hero + results card + search area */
+.searchContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.75rem;
+  text-align: center;
+}
+
+/* === HERO SECTION (trophy, heading, subtitle) === */
+
+.hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.heroIcon {
+  width: 80px;
+  height: 80px;
+  border-radius: 999px;
+  background: #dcfce7;              /* soft green bubble */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.25rem;
+  color: #059669;                   /* main green */
+  box-shadow: 0 16px 35px rgba(16, 185, 129, 0.35);
+}
+
+.heroTitle {
+  font-size: 2.2rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  color: #111827;
+}
+
+.heroSubtitle {
+  max-width: 540px;
+  font-size: 0.98rem;
+  color: #6b7280;                   /* muted grey text */
+}
+
+/* === RESULTS CARD (recent/next fixtures) === */
 
 .container {
-  border: 1px solid #ccc;
-  padding: 20px;
-  margin-bottom: 20px;
-  width: 300px;
-  height: 300px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: white; /* Add background to make text readable */
-  color: black; /* Ensure text is readable on the white background */
+  width: 100%;
+  max-width: 640px;
+  background-color: #ffffff;
+  border-radius: 24px;
+  padding: 1.75rem 2rem;
+  box-shadow: 0 20px 45px rgba(15, 23, 42, 0.16);
+  border: none;
+  margin-bottom: 0.25rem;
 }
 
-.searchContainer {
+.container h4 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: #111827;
+}
+
+.container p,
+.container div {
+  font-size: 0.95rem;
+}
+
+/* === SEARCH INPUT + BUTTON === */
+
+.searchBar {
+  width: 100%;
+  max-width: 560px;
+  padding: 0.75rem 1.25rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0.25rem;
+  border-radius: 999px;             /* pill shape */
+  border: 1px solid #d1d5db;
+  background-color: #ffffff;
+  font-size: 0.98rem;
+  outline: none;
+  box-shadow: 0 10px 30px rgba(148, 163, 184, 0.55);
+}
+
+.searchBar::placeholder {
+  color: #9ca3af;
+}
+
+/* Focus state for the input */
+.searchBar:focus {
+  border-color: #059669;
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.25);
+}
+
+/* === Search button state styles === */
+
+/* Base styling (shape, layout) */
+.searchButton {
+  width: 180px;
+  height: 44px;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  border: none;
+  box-shadow: 0 8px 18px rgba(15, 23, 42, 0.35);
+}
+
+/* Default (no team name yet) – grey */
+.searchButtonIdle {
+  background-color: #6b7280 !important; /* grey */
+  border-color: #6b7280 !important;
+}
+
+/* When there is a team name – green */
+.searchButtonReady {
+  background-color: #059669 !important; /* green */
+  border-color: #059669 !important;
+}
+
+.searchButtonReady:hover {
+  background-color: #047857 !important;
+  border-color: #047857 !important;
+}
+
+
+/* Optional heading class (if you use it anywhere) */
+.heading {
+  color: #111827;
+}
+
+/* === App wrapper & header bar === */
+
+.appWrapper {
+  min-height: 100vh;
+}
+
+/* Top green bar with centered FootBot */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10; /* above the background images */
+  background-color: #036b52; /* green background */
+  border-bottom: 4px solid #facc15; /* gold stripe */
+  padding: 0.5rem 1.25rem 0.75rem;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center; /* Center items vertically */
-  text-align: center; /* Center text horizontally */
-  width: 100%;
 }
 
-.searchBar {
-  width: 300px; /* Match the width of the white box */
-  padding: 10px;
-  margin: 10px 0; /* Add space between elements */
+/* FootBot title – centered, bold, gold */
+.brandTitle {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #facc15; /* gold */
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
 }
 
-.searchButton {
-  width: 55px; /* Make the button circular */
-  height: 55px; /* Make the button circular */
-  border-radius: 50%; /* Make the button circular */
+/* Container for league buttons */
+.leagueNav {
+  margin-top: 0.35rem;
   display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
   justify-content: center;
+}
+
+/* Rounded green buttons that hold the league images */
+.leagueButton {
+  background-color: #036b52; /* same green as header */
+  border-radius: 999px;
+  padding: 0.25rem 0.75rem;
+  border: 2px solid transparent;
+  border-radius: 999px;
+  display: flex;
+  flex-direction: column;
   align-items: center;
+  text-decoration: none;
+  color: #f9fafb;
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease,
+    border-color 0.15s ease,
+    background-color 0.15s ease;
 }
 
-.heading {
-  color: white; /* Set text color to white */
-  text-align: center; /* Center the text */
-  margin-top: 20px; /* Add some space above the heading */
+/* Gold border when the route is active */
+.leagueButtonActive {
+  border-color: #facc15; /* gold */
+}
+
+/* League logo inside the button */
+.leagueImage {
+   width: 36px;
+  height: 36px;
+  object-fit: contain;
+}
+
+/* Optional small text label under each logo */
+.leagueLabel {
+   font-size: 0.7rem;
+}
+
+/* Small hover lift */
+.leagueButton:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 14px rgba(15, 23, 42, 0.35);
+}
+
+/* Give main content some padding so it clears the fixed header */
+.mainContent {
+  padding-top: 135px; /* adjust if header becomes taller */
+}
+
+/* League icons inside the nav buttons */
+.leagueIcon {
+  width: 52px;          /* adjust this number if you want them larger/smaller */
+  height: 52px;
+  object-fit: contain;  /* keeps aspect ratio so logos don’t stretch */
+  border-radius: 50%;   /* makes them appear circular inside the button */
+  display: block;
+  margin: 0 auto;
 }
 
 
 
-/* Small screens */
-@media (max-width: 360px) {
+/* === RESPONSIVE TWEAKS === */
+
+@media (max-width: 768px) {
+  .homeBackground {
+    padding-top: 120px;
+  }
+
+  .heroTitle {
+    font-size: 1.7rem;
+  }
+
+  .heroSubtitle {
+    font-size: 0.9rem;
+  }
+
   .container {
-    max-width: 250px; /* Adjust width */
-    max-height: 220px;
-    margin-top: 150px;
-  }
-  .searchBar {
-    max-width: 200px; /* Adjust width */
+    padding: 1.25rem 1.4rem;
   }
 }
 
-
-
-/* Small screens */
-@media (max-width: 375px) {
-  .container {
-    max-width: 250px; /* Adjust width */
-    max-height: 220px;
-    margin-top: 150px;
+@media (max-width: 480px) {
+  .heroIcon {
+    width: 64px;
+    height: 64px;
+    font-size: 1.8rem;
   }
-  .searchBar {
-    max-width: 200px; /* Adjust width */
-  }
-}
 
-
-/* Small screens */
-@media (max-width: 412px) {
-  .container {
-    max-width: 250px; /* Adjust width */
-    max-height: 340px !important;
-    margin-top: 150px;
+  .heroTitle {
+    font-size: 1.45rem;
   }
-  .searchBar {
-    max-width: 200px; /* Adjust width */
+
+  .searchBar,
+  .searchButton {
+    max-width: 100%;
   }
 }
-
-
-
-/* Small screens */
-@media (max-width: 414px) {
-  .container {
-    max-width: 250px; /* Adjust width */
-    max-height: 340px !important;
-    margin-top: 150px;
-  }
-  .searchBar {
-    max-width: 200px; /* Adjust width */
-  }
-}
-
-
-
-/* Small screens */
-@media (max-width: 430px) {
-  .container {
-    max-width: 250px; /* Adjust width */
-    max-height: 340px !important;
-    margin-top: 150px;
-  }
-  .searchBar {
-    max-width: 200px; /* Adjust width */
-  }
-}
-
-
-
-
-
-
-/* Small screens */
-@media (max-width: 600px) {
-  .container {
-    max-width: 250px; /* Adjust width */
-    max-height: 220px;
-    margin-top: 50px;
-  }
-  .searchBar {
-    max-width: 200px; /* Adjust width */
-  }
-}
-
-/* Medium screens */
-@media (min-width: 601px) and (max-width: 1024px) {
-  .container {
-    max-width: 300px; /* Adjust width */
-  }
-  .searchBar {
-    max-width: 300px; /* Adjust width */
-  }
-}
-
-/* Large screens */
-@media (min-width: 1025px) {
-  .container {
-    max-width: 400px; /* Adjust width */
-  }
-  .searchBar {
-    max-width: 400px; /* Adjust width */
-  }
-}
-
-
-
-  

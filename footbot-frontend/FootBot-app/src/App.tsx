@@ -1,12 +1,12 @@
 // footbot-frontend/FootBot-app/src/App.tsx
 import React from 'react';
-import { Route, Routes, Link } from 'react-router-dom';
+import { Routes, Route, NavLink } from 'react-router-dom';
 import { Home } from './components/Home';
 import { LeagueFixtures } from './components/LeagueFixtures';
 import { LeagueTable } from './components/LeagueTable';
-import styles from './components/Home.module.css'; // Import the CSS module
+import styles from './components/Home.module.css';
 
-// Import the images
+// Images
 import homeIcon from './assets/FootBot.png';
 import premierLeagueIcon from './assets/premier-l.jpg';
 import serieAIcon from './assets/series-a.png';
@@ -16,48 +16,99 @@ import championsLeagueIcon from './assets/champions-league.jpeg';
 
 const App: React.FC = () => {
   return (
-    <div className="container">
-      <h1 className={`my-4 ${styles.heading}`}>FootBot</h1> {/* Apply the heading class */}
-      <nav className="nav nav-pills nav-justified">
-        <Link className="nav-link" to="/">
-          <img src={homeIcon} alt="Home" style={{ width: '64px', height: '64px' }} />
-        </Link>
-        <Link className="nav-link" to="/league/PL">
-          <img src={premierLeagueIcon} alt="Premier League" style={{ width: '64px', height: '64px' }} />
-        </Link>
-        <Link className="nav-link" to="/league/SA">
-          <img src={serieAIcon} alt="Serie A" style={{ width: '134px', height: '64px' }} />
-        </Link>
-        <Link className="nav-link" to="/league/PD">
-          <img src={laLigaIcon} alt="La Liga" style={{ width: '84px', height: '64px' }} />
-        </Link>
-        <Link className="nav-link" to="/league/BL1">
-          <img src={bundesligaIcon} alt="Bundesliga" style={{ width: '64px', height: '64px' }} />
-        </Link>
-        <Link className="nav-link" to="/league/CL">
-          <img src={championsLeagueIcon} alt="UEFA Champions League" style={{ width: '104px', height: '64px' }} />
-        </Link>
-      </nav>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/league/:leagueId" element={<LeagueFixtures />} />
-        <Route path="/league/:leagueId/table/:season" element={<LeagueTable />} />
-      </Routes>
+    <div className={styles.appWrapper}>
+      {/* Top green header */}
+      <header className={styles.header}>
+        {/* Centered gold FootBot title */}
+        <div className={styles.brandTitle}>FOOTBOT</div>
+
+        {/* League buttons */}
+        <nav className={styles.leagueNav}>
+          <NavLink
+            to="/"
+            end
+            className={({ isActive }) =>
+              `${styles.leagueButton} ${isActive ? styles.leagueButtonActive : ''}`
+            }
+          >
+            <img src={homeIcon} alt="Home" className={styles.leagueIcon} />
+            <span className={styles.leagueLabel}>Home</span>
+          </NavLink>
+
+          <NavLink
+            to="/league/PL"
+            className={({ isActive }) =>
+              `${styles.leagueButton} ${isActive ? styles.leagueButtonActive : ''}`
+            }
+          >
+            <img
+              src={premierLeagueIcon}
+              alt="Premier League"
+              className={styles.leagueIcon}
+            />
+            <span className={styles.leagueLabel}>Premier League</span>
+          </NavLink>
+
+          <NavLink
+            to="/league/SA"
+            className={({ isActive }) =>
+              `${styles.leagueButton} ${isActive ? styles.leagueButtonActive : ''}`
+            }
+          >
+            <img src={serieAIcon} alt="Serie A" className={styles.leagueIcon} />
+            <span className={styles.leagueLabel}>Serie A</span>
+          </NavLink>
+
+          <NavLink
+            to="/league/PD"
+            className={({ isActive }) =>
+              `${styles.leagueButton} ${isActive ? styles.leagueButtonActive : ''}`
+            }
+          >
+            <img src={laLigaIcon} alt="La Liga" className={styles.leagueIcon} />
+            <span className={styles.leagueLabel}>La Liga</span>
+          </NavLink>
+
+          <NavLink
+            to="/league/BL1"
+            className={({ isActive }) =>
+              `${styles.leagueButton} ${isActive ? styles.leagueButtonActive : ''}`
+            }
+          >
+            <img
+              src={bundesligaIcon}
+              alt="Bundesliga"
+              className={styles.leagueIcon}
+            />
+            <span className={styles.leagueLabel}>Bundesliga</span>
+          </NavLink>
+
+          <NavLink
+            to="/league/CL"
+            className={({ isActive }) =>
+              `${styles.leagueButton} ${isActive ? styles.leagueButtonActive : ''}`
+            }
+          >
+            <img
+              src={championsLeagueIcon}
+              alt="UEFA Champions League"
+              className={styles.leagueIcon}
+            />
+            <span className={styles.leagueLabel}>Champions League</span>
+          </NavLink>
+        </nav>
+      </header>
+
+      {/* Main content below fixed header */}
+      <main className={styles.mainContent}>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/league/:leagueId" element={<LeagueFixtures />} />
+          <Route path="/league/:leagueId/table/:season" element={<LeagueTable />} />
+        </Routes>
+      </main>
     </div>
   );
 };
 
 export default App;
-
-
-
-
-
-
-
-
-
-
-
-
-
