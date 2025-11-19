@@ -64,17 +64,41 @@
 }
 
 .heroIcon {
-   width: 80px;
+  width: 80px;
   height: 80px;
   border-radius: 999px;
-  background: #dcfce7;               /* soft green background */
+  background: #dcfce7;              /* soft green */
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 2.25rem;
-  color: #059669;                    /* green trophy icon */
-  box-shadow: 0 16px 40px rgba(3, 233, 87, 0.75); /* bright green glow */
+  color: #059669;                   /* green trophy */
+  box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.25);
+  animation: trophyPulse 2.6s ease-in-out infinite;
 }
+
+@keyframes trophyPulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.25);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 0 0 35px 14px rgba(34, 197, 94, 0.8);
+    transform: scale(1.04);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.25);
+    transform: scale(1);
+  }
+}
+
+.resultsSection {
+  width: 100%;
+  margin-top: 1.5rem;
+  border-top: 1px solid #e5e7eb;
+  padding-top: 1.25rem;
+}
+
 
 .heroTitle {
   font-size: 2.2rem;
@@ -305,11 +329,29 @@
 
 /* “Recent Fixture” / “Next Fixture” headings */
 .fixtureHeading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
   font-size: 1.05rem;
   font-weight: 800;
-  color: #facc15;            /* gold */
-  margin-bottom: 0.4rem;
+  color: #facc15;          /* gold */
+  margin: 0.6rem 0 0.3rem;
 }
+
+/* small green calendar badge */
+.fixtureIcon {
+  width: 24px;
+  height: 24px;
+  border-radius: 999px;
+  background-color: #059669;  /* green */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  color: #f9fafb;             /* white calendar glyph */
+}
+
 
 .fixtureBlock {
   margin-bottom: 0.75rem;
@@ -369,6 +411,50 @@
   color: #f9fafb;
   font-size: 0.8rem;
   text-align: center;
+}
+
+.fixtureBlock {
+  margin-bottom: 0.75rem;
+}
+
+.fixtureRow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  text-align: center;
+}
+
+.teamWithLogo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-weight: 600;
+}
+
+.teamLogo {
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
+  border-radius: 999px;
+}
+
+.vsText {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #6b7280;
+}
+
+.scoreLine {
+  margin-top: 0.35rem;
+  font-size: 0.95rem;
+}
+
+.dateLine {
+  margin-top: 0.15rem;
+  font-size: 0.85rem;
+  color: #6b7280;
 }
 
 

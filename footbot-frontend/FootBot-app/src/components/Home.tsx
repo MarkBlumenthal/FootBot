@@ -15,7 +15,8 @@ export const Home: React.FC = () => {
   const [searchConducted, setSearchConducted] = useState(false);
 
   const handleSearch = async () => {
-    if (!searchTerm.trim()) return;
+    const trimmed = searchTerm.trim();
+    if (!trimmed) return;
 
     setLoading(true);
     setError(null);
@@ -23,7 +24,7 @@ export const Home: React.FC = () => {
     setSearchConducted(true);
 
     try {
-      const data = await getTeamFixtures(searchTerm.trim());
+      const data = await getTeamFixtures(trimmed);
       if (data.length > 0) {
         const sortedFixtures = data.sort(
           (a, b) => new Date(a.utcDate).getTime() - new Date(b.utcDate).getTime()
@@ -59,7 +60,7 @@ export const Home: React.FC = () => {
     }
   }, [loading]);
 
-  // Button turns green when there is text in the input
+  // Button goes green when there’s text
   const isSearchReady = searchTerm.trim().length > 0;
 
   const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
@@ -68,11 +69,11 @@ export const Home: React.FC = () => {
     }
   };
 
-  // Helper to render a team name with its crest/logo when available
+  // Render team with its crest/logo (if API provides crest url)
   const renderTeamWithLogo = (team: any) => {
     if (!team) return null;
 
-    const crest = team.crest as string | undefined;
+    const crest = (team as any).crest as string | undefined;
     const name = normalizeTeamName(team.name);
 
     return (
@@ -93,7 +94,7 @@ export const Home: React.FC = () => {
     <div className={styles.homeBackground}>
       <div className={styles.contentContainer}>
         <div className={styles.searchContainer}>
-          {/* Hero + search inside a gold bordered card */}
+          {/* Single card: hero + search + results */}
           <div className={styles.heroCard}>
             <div className={styles.hero}>
               <div className={styles.heroIcon}>🏆</div>
@@ -128,60 +129,66 @@ export const Home: React.FC = () => {
             >
               Search Team
             </button>
+
+            {/* Results INSIDE the same card */}
+            {searchConducted && (
+              <div className={styles.resultsSection}>
+                {loading ? (
+                  <p>Loading...</p>
+                ) : error ? (
+                  <p>{error}</p>
+                ) : (
+                  <div>
+                    <h4 className={styles.fixtureHeading}>
+                      <span className={styles.fixtureIcon}>📅</span>
+                      <span>Recent Fixture</span>
+                    </h4>
+                    {recentFixture ? (
+                      <div className={styles.fixtureBlock}>
+                        <div className={styles.fixtureRow}>
+                          {renderTeamWithLogo((recentFixture as any).homeTeam)}
+                          <span className={styles.vsText}>vs</span>
+                          {renderTeamWithLogo((recentFixture as any).awayTeam)}
+                        </div>
+                        <div className={styles.scoreLine}>
+                          Full Time: {recentFixture.score.fullTime.home} -{' '}
+                          {recentFixture.score.fullTime.away}
+                        </div>
+                        <div className={styles.dateLine}>
+                          {new Date(recentFixture.utcDate).toLocaleDateString()}
+                        </div>
+                      </div>
+                    ) : (
+                      <p>No recent fixtures available.</p>
+                    )}
+
+                    <h4 className={styles.fixtureHeading}>
+                      <span className={styles.fixtureIcon}>📅</span>
+                      <span>Next Fixture</span>
+                    </h4>
+                    {nextFixture ? (
+                      <div className={styles.fixtureBlock}>
+                        <div className={styles.fixtureRow}>
+                          {renderTeamWithLogo((nextFixture as any).homeTeam)}
+                          <span className={styles.vsText}>vs</span>
+                          {renderTeamWithLogo((nextFixture as any).awayTeam)}
+                        </div>
+                        <div className={styles.scoreLine}>
+                          Full Time: {nextFixture.score.fullTime.home} -{' '}
+                          {nextFixture.score.fullTime.away}
+                        </div>
+                        <div className={styles.dateLine}>
+                          {new Date(nextFixture.utcDate).toLocaleDateString()}
+                        </div>
+                      </div>
+                    ) : (
+                      <p>No upcoming fixtures available.</p>
+                    )}
+                  </div>
+                )}
+              </div>
+            )}
           </div>
-
-          {/* Results card (popup-style) */}
-          {searchConducted && (
-            <div className={styles.resultsCard}>
-              {loading ? (
-                <p>Loading...</p>
-              ) : error ? (
-                <p>{error}</p>
-              ) : (
-                <div>
-                  <h4 className={styles.fixtureHeading}>Recent Fixture</h4>
-                  {recentFixture ? (
-                    <div className={styles.fixtureBlock}>
-                      <div className={styles.fixtureRow}>
-                        {renderTeamWithLogo((recentFixture as any).homeTeam)}
-                        <span className={styles.vsText}>vs</span>
-                        {renderTeamWithLogo((recentFixture as any).awayTeam)}
-                      </div>
-                      <div className={styles.scoreLine}>
-                        Full Time: {recentFixture.score.fullTime.home} -{' '}
-                        {recentFixture.score.fullTime.away}
-                      </div>
-                      <div className={styles.dateLine}>
-                        {new Date(recentFixture.utcDate).toLocaleDateString()}
-                      </div>
-                    </div>
-                  ) : (
-                    <p>No recent fixtures available.</p>
-                  )}
-
-                  <h4 className={`${styles.fixtureHeading} mt-3`}>Next Fixture</h4>
-                  {nextFixture ? (
-                    <div className={styles.fixtureBlock}>
-                      <div className={styles.fixtureRow}>
-                        {renderTeamWithLogo((nextFixture as any).homeTeam)}
-                        <span className={styles.vsText}>vs</span>
-                        {renderTeamWithLogo((nextFixture as any).awayTeam)}
-                      </div>
-                      <div className={styles.scoreLine}>
-                        Full Time: {nextFixture.score.fullTime.home} -{' '}
-                        {nextFixture.score.fullTime.away}
-                      </div>
-                      <div className={styles.dateLine}>
-                        {new Date(nextFixture.utcDate).toLocaleDateString()}
-                      </div>
-                    </div>
-                  ) : (
-                    <p>No upcoming fixtures available.</p>
-                  )}
-                </div>
-              )}
-            </div>
-          )}
 
           <LoadingModal show={showModal} handleClose={() => setShowModal(false)} />
         </div>
