@@ -107,6 +107,11 @@ const App: React.FC = () => {
           <Route path="/league/:leagueId/table/:season" element={<LeagueTable />} />
         </Routes>
       </main>
+       <footer className={styles.footer}>
+      <p className={styles.footerText}>
+        FootBot - Your Football Companion | Search teams, view fixtures &amp; standings
+      </p>
+    </footer>
     </div>
   );
 };
