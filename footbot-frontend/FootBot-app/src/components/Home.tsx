@@ -134,9 +134,21 @@ export const Home: React.FC = () => {
             {searchConducted && (
               <div className={styles.resultsSection}>
                 {loading ? (
-                  <p>Loading...</p>
-                ) : error ? (
-                  <p>{error}</p>
+  <div className={styles.loadingWrap}>
+    <div className={styles.loadingLine}>
+      <span className={styles.loadingText}>Loading</span>
+      <div className={styles.loadingDots} aria-label="loading">
+        <span />
+        <span />
+        <span />
+      </div>
+    </div>
+    <div className={styles.loadingBall} aria-hidden>
+      ⚽
+    </div>
+  </div>
+) : error ? (
+  <p>{error}</p>
                 ) : (
                   <div>
                     <h4 className={styles.fixtureHeading}>
