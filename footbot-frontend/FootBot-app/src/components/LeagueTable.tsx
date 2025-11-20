@@ -53,7 +53,30 @@ export const LeagueTable: React.FC = () => {
   }, [loading]);
 
   if (error) return <p>{error}</p>;
-  if (!standings) return <p>Loading...</p>;
+    if (!standings) {
+    return (
+      <div className="text-center mt-5">
+        <div className="loadingWrap">
+          <div className="loadingLine">
+            <span className="loadingText">Loading</span>
+            <div className="loadingDots" aria-label="loading">
+              <span />
+              <span />
+              <span />
+            </div>
+          </div>
+          <div className="loadingBall" aria-hidden>
+            ⚽
+          </div>
+        </div>
+
+        {showModal && (
+          <LoadingModal show={showModal} handleClose={() => setShowModal(false)} />
+        )}
+      </div>
+    );
+  }
+
   if (standings.standings.length === 0) return <p>No standings available.</p>;
 
   return (
@@ -68,9 +91,10 @@ export const LeagueTable: React.FC = () => {
 
       {leagueId === 'CL' && <KnockoutTree matches={knockoutStages} />}
 
-      <Link to={`/league/${leagueId}`} className="btn mt-3 goldButton">
-        View Fixtures
-      </Link>
+      <Link to={`/league/${leagueId}`} className="btn goldButton mt-3">
+  View Fixtures
+</Link>
+
 
       <LoadingModal show={showModal} handleClose={() => setShowModal(false)} />
     </div>

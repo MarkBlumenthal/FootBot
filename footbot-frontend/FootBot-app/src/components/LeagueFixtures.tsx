@@ -52,14 +52,30 @@ export const LeagueFixtures: React.FC = () => {
     return <p className="text-center mt-5">{error}</p>;
   }
 
-  if (!matches) {
+    if (!matches) {
     return (
-      <div className={`${styles.fixturesPage} text-center mt-5`}>
-        <p>Loading match data...</p>
-        {showModal && <LoadingModal show={showModal} handleClose={() => setShowModal(false)} />}
+      <div className="text-center mt-5">
+        <div className={styles.loadingWrap}>
+          <div className={styles.loadingLine}>
+            <span className={styles.loadingText}>Loading</span>
+            <div className={styles.loadingDots} aria-label="loading">
+              <span />
+              <span />
+              <span />
+            </div>
+          </div>
+          <div className={styles.loadingBall} aria-hidden>
+            ⚽
+          </div>
+        </div>
+
+        {showModal && (
+          <LoadingModal show={showModal} handleClose={() => setShowModal(false)} />
+        )}
       </div>
     );
   }
+
 
   const firstFixtureDate =
     matches.matches && matches.matches.length > 0 ? matches.matches[0]?.utcDate : null;
@@ -77,11 +93,12 @@ export const LeagueFixtures: React.FC = () => {
           {matches.competition} Fixtures - Season {currentSeason}
         </h2>
         <Link
-          to={`/league/${leagueId}/table/${currentSeason}`}
-          className={`btn ${styles.goldButton}`}
-        >
-          View Table
-        </Link>
+  to={`/league/${leagueId}/table/${currentSeason}`}
+  className={`btn ${styles.goldButton}`}
+>
+  View Table
+</Link>
+
       </div>
 
       {Object.keys(groupedMatches).map((date, index) => (
@@ -126,11 +143,12 @@ export const LeagueFixtures: React.FC = () => {
       ))}
 
       <Link
-        to={`/league/${leagueId}/table/${currentSeason}`}
-        className={`btn ${styles.goldButton} mt-3`}
-      >
-        View Table
-      </Link>
+  to={`/league/${leagueId}/table/${currentSeason}`}
+  className={`btn ${styles.goldButton} mt-3`}
+>
+  View Table
+</Link>
+
 
       <LoadingModal show={showModal} handleClose={() => setShowModal(false)} />
     </div>
