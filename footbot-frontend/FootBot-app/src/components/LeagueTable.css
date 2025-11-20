@@ -1,42 +1,98 @@
-/* Default table styling */
+/* footbot-frontend/FootBot-app/src/components/LeagueTable.css */
+
+/* Page wrapper */
+.tablePage {
+  min-height: 100vh;
+  background: #f5f7fb;
+  padding: 1.5rem 1rem 3rem;
+  color: #111827;
+}
+
+/* Title bar */
+.tableHeader {
+  width: 100%;
+  max-width: 1050px;
+  margin: 0 auto 1.25rem;
+  padding: 1rem 1.25rem;
+  background: #ffffff;
+  border: 3px solid #facc15;
+  border-radius: 18px;
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.12);
+}
+
+.tableHeader h2 {
+  margin: 0;
+  font-weight: 800;
+}
+
+/* Group headings (e.g. CL groups) */
+.table-responsive h4 {
+  color: #facc15;
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+}
+
+/* Themed table */
 .table {
-    width: 100%;
-    min-width: 600px;
-  }
-  
+  width: 100%;
+  min-width: 600px;
+  background: #ffffff;
+  border: 2px solid #facc15;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 10px 26px rgba(15, 23, 42, 0.08);
+}
 
-  img {
-    display: block;
-    width: auto;
-    height: auto;
-  }
-  
-  img[src=""] {
-    visibility: hidden;
+/* Header row */
+.table thead th {
+  background: #036b52; /* deep green */
+  color: #facc15;      /* gold */
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-bottom: 2px solid #facc15;
+}
+
+/* Body rows */
+.table tbody tr {
+  background: #ffffff;
+}
+
+.table-striped > tbody > tr:nth-of-type(odd) {
+  background-color: #f0fdf4; /* very light green stripe */
+}
+
+/* Hover */
+.table tbody tr:hover {
+  background: #dcfce7;
+}
+
+/* Team cell layout */
+.team-logo-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 700;
+}
+
+.team-logo-container img {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+}
+
+/* Responsive hide columns unchanged from your file */
+@media (max-width: 768px) {
+  .table th,
+  .table td {
+    font-size: 0.8em;
+    padding: 0.5em;
   }
 
-  .team-logo-container {
-    display: flex;
-    align-items: center;
+  .table th.gf,
+  .table th.ga,
+  .table td.gf,
+  .table td.ga {
+    display: none;
   }
-  
-  .team-logo-container img {
-    margin-right: 10px; /* Add space between the logo and the team name */
-  }
-
-  /* Media query for smaller screens */
-  @media (max-width: 768px) {
-    .table th,
-    .table td {
-      font-size: 0.8em; /* Reduce font size */
-      padding: 0.5em; /* Reduce padding */
-    }
-  
-    .table th.gf,
-    .table th.ga,
-    .table td.gf,
-    .table td.ga {
-      display: none; /* Hide Goals For and Goals Against columns */
-    }
-  }
-  
+}

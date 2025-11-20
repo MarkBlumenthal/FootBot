@@ -1,10 +1,16 @@
 // footbot-frontend/FootBot-app/src/components/LeagueTable.tsx
 import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { getTables, getKnockoutStages, CompetitionStandings, Match } from '../services/api';
+import {
+  getTables,
+  getKnockoutStages,
+  CompetitionStandings,
+  Match
+} from '../services/api';
 import { StandingsList } from './StandingsList';
 import KnockoutTree from './KnockoutTree';
 import LoadingModal from './LoadingModal';
+import './LeagueTable.css';
 
 export const LeagueTable: React.FC = () => {
   const { leagueId, season } = useParams<{ leagueId: string; season: string }>();
@@ -46,24 +52,26 @@ export const LeagueTable: React.FC = () => {
     }
   }, [loading]);
 
-  if (error) {
-    return <p>{error}</p>;
-  }
-
-  if (!standings) {
-    return <p>Loading...</p>;
-  }
-
-  if (standings.standings.length === 0) {
-    return <p>No standings available.</p>;
-  }
+  if (error) return <p>{error}</p>;
+  if (!standings) return <p>Loading...</p>;
+  if (standings.standings.length === 0) return <p>No standings available.</p>;
 
   return (
-    <div>
-      <h2>{standings.competition} Table - Season {season}</h2>
-      <StandingsList standings={standings.standings} leagueId={leagueId!} /> {/* Pass leagueId */}
+    <div className="tablePage">
+      <div className="tableHeader">
+        <h2>
+          {standings.competition} Table - Season {season}
+        </h2>
+      </div>
+
+      <StandingsList standings={standings.standings} leagueId={leagueId!} />
+
       {leagueId === 'CL' && <KnockoutTree matches={knockoutStages} />}
-      <Link to={`/league/${leagueId}`} className="btn btn-primary mt-3">View Fixtures</Link>
+
+      <Link to={`/league/${leagueId}`} className="btn mt-3 goldButton">
+        View Fixtures
+      </Link>
+
       <LoadingModal show={showModal} handleClose={() => setShowModal(false)} />
     </div>
   );

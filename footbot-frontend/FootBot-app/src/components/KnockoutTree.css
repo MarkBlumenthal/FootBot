@@ -1,14 +1,17 @@
 /* footbot-frontend/FootBot-app/src/components/KnockoutTree.css */
+
 .knockout-bracket {
   display: flex;
   width: 100%;
   margin: 30px 0;
-  background-color: #0e1e5b;
-  color: white;
+  background: #ffffff;
+  color: #111827;
   padding: 20px;
-  border-radius: 8px;
+  border-radius: 16px;
+  border: 3px solid #facc15; /* gold frame */
   position: relative;
   overflow-x: auto;
+  box-shadow: 0 14px 30px rgba(15, 23, 42, 0.12);
 }
 
 .knockout-bracket::after {
@@ -18,7 +21,7 @@
   left: 0;
   right: 0;
   height: 2px;
-  background-color: rgba(255, 255, 255, 0.2);
+  background-color: rgba(3, 107, 82, 0.25); /* green connector */
   z-index: 1;
 }
 
@@ -34,15 +37,37 @@
   background-position: center;
   background-repeat: no-repeat;
   z-index: 3;
+  filter: drop-shadow(0 0 12px rgba(34,197,94,0.6)); /* green glow */
+}
+
+.bracket-title {
+  text-align: center;
+  font-size: 24px;
+  color: #facc15;
+  margin-bottom: 14px;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.location-text {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 18px;
+  color: #036b52;
+  font-style: italic;
+  font-weight: 700;
 }
 
 .round-title {
   text-align: center;
-  margin-bottom: 10px;
-  font-weight: bold;
-  color: white;
+  margin-bottom: 8px;
+  font-weight: 900;
+  color: #036b52;
   text-transform: uppercase;
-  font-size: 14px;
+  font-size: 13px;
 }
 
 .bracket-rounds {
@@ -61,27 +86,10 @@
   position: relative;
 }
 
-.left-side {
-  order: 1;
-  display: flex;
-  flex-direction: row;
-  flex: 1;
-}
-
-.right-side {
-  order: 3;
-  display: flex;
-  flex-direction: row;
-  flex: 1;
-}
-
-.left-side .round {
-  align-items: flex-end;
-}
-
-.right-side .round {
-  align-items: flex-start;
-}
+.left-side { order: 1; display: flex; flex-direction: row; flex: 1; }
+.right-side { order: 3; display: flex; flex-direction: row; flex: 1; }
+.left-side .round { align-items: flex-end; }
+.right-side .round { align-items: flex-start; }
 
 .center-section {
   order: 2;
@@ -94,36 +102,19 @@
 
 .match-connector {
   position: absolute;
-  border: 1px solid rgba(255, 255, 255, 0.4);
+  border: 1px solid rgba(3, 107, 82, 0.35);
   z-index: 1;
 }
 
-/* Round of 16 spacing */
-.round-of-16 {
-  justify-content: space-around;
-}
+/* spacing unchanged */
+.round-of-16 { justify-content: space-around; }
+.round-of-16 .match-pair { margin: 15px 0; }
 
-.round-of-16 .match-pair {
-  margin: 15px 0;
-}
+.quarter-finals { justify-content: space-around; }
+.quarter-finals .match-pair { margin: 40px 0; }
 
-/* Quarter Finals spacing */
-.quarter-finals {
-  justify-content: space-around;
-}
-
-.quarter-finals .match-pair {
-  margin: 40px 0;
-}
-
-/* Semi Finals spacing */
-.semi-finals {
-  justify-content: space-around;
-}
-
-.semi-finals .match-pair {
-  margin: 80px 0;
-}
+.semi-finals { justify-content: space-around; }
+.semi-finals .match-pair { margin: 80px 0; }
 
 .match-pair {
   position: relative;
@@ -131,43 +122,38 @@
   margin: 10px;
 }
 
+/* match boxes now white w/ green borders */
 .match-box {
-  background-color: #c7c7c7;
-  color: #333;
-  padding: 5px;
-  margin: 2px 0;
-  border-radius: 3px;
+  background: #ffffff;
+  color: #111827;
+  padding: 6px 8px;
+  margin: 3px 0;
+  border-radius: 8px;
   text-align: center;
-  font-weight: bold;
+  font-weight: 800;
   font-size: 12px;
   display: flex;
   align-items: center;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
-  height: 28px;
+  height: 30px;
   position: relative;
-}
-
-.right-side .match-box {
-  background-color: #00ccff;
+  border: 2px solid #036b52;
+  box-shadow: 0 6px 12px rgba(15, 23, 42, 0.08);
 }
 
 .match-box img {
-  height: 20px;
-  margin-right: 5px;
+  height: 18px;
+  margin-right: 6px;
 }
 
 .match-result {
   font-size: 12px;
-  color: white;
+  color: #036b52;
   margin: 2px 0;
   text-align: center;
-}
-
-.match-line {
-  position: absolute;
-  background-color: rgba(255, 255, 255, 0.4);
+  font-weight: 700;
 }
 
 /* Final match */
@@ -178,26 +164,9 @@
 
 .final-match .vs-text {
   margin: 10px 0;
-  font-size: 16px;
-  color: white;
-}
-
-.bracket-title {
-  text-align: center;
-  font-size: 24px;
-  color: white;
-  margin-bottom: 20px;
-  font-weight: bold;
-}
-
-.location-text {
-  position: absolute;
-  top: 10px;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 20px;
-  color: white;
-  font-style: italic;
+  font-size: 15px;
+  color: #036b52;
+  font-weight: 900;
 }
 
 .match-pair .team {
@@ -213,16 +182,16 @@
     overflow-x: auto;
     padding: 10px;
   }
-  
+
   .match-box {
     width: 120px;
     font-size: 10px;
   }
-  
+
   .round-title {
     font-size: 12px;
   }
-  
+
   .trophy {
     width: 50px;
     height: 50px;

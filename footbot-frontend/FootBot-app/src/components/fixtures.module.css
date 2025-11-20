@@ -1,96 +1,160 @@
 /* footbot-frontend/FootBot-app/src/components/fixtures.module.css */
+
+/* Page background + layout */
+.fixturesPage {
+  min-height: 100vh;
+  background: #f5f7fb; /* same light background as home */
+  padding: 1.5rem 1rem 3rem;
+  color: #111827;
+}
+
+/* Header row (title + button) */
+.pageHeader {
+  width: 100%;
+  max-width: 1050px;
+  margin: 0 auto 1.25rem;
+  padding: 1rem 1.25rem;
+  background: #ffffff;
+  border: 3px solid #facc15; /* gold */
+  border-radius: 18px;
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.12);
+}
+
+.pageTitle {
+  font-weight: 800;
+  color: #111827;
+}
+
+/* Gold/green themed buttons */
+.goldButton {
+  background-color: #036b52 !important;
+  border: 2px solid #facc15 !important;
+  color: #facc15 !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.06em;
+  border-radius: 999px !important;
+  padding: 0.45rem 1.1rem !important;
+  text-transform: uppercase;
+  box-shadow: 0 8px 18px rgba(3, 107, 82, 0.35);
+}
+
+.goldButton:hover {
+  background-color: #047857 !important;
+  border-color: #facc15 !important;
+}
+
+/* Date headings */
+.dateHeading {
+  font-weight: 800;
+  color: #facc15;
+  margin: 1rem auto 0.5rem;
+  max-width: 1050px;
+  text-align: left;
+  padding-left: 0.35rem;
+}
+
+/* Each fixture card */
 .fixtureBox {
-  width: 375px; /* Adjust width as needed */
-  height: auto; /* Allow height to adjust based on content */
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  background-image: url('/images/lightning.jpeg'); /* Set background image */
-  background-size: cover; /* Cover the entire area */
-  background-position: center; /* Center the image */
-  color: #fff; /* White text */
-  padding: 10px;
+  width: 375px;
+  height: auto;
+  border: 2px solid #facc15;  /* gold border */
+  border-radius: 16px;
+  background: #ffffff;        /* clean white card */
+  color: #111827;
+  padding: 12px 14px;
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
-  font-weight: bold;
-  margin: 10px; /* Add margin to create space between boxes */
+  font-weight: 700;
+  margin: 10px;
+  box-shadow: 0 14px 30px rgba(15, 23, 42, 0.12);
 }
 
-.fixtureBox .teams {
+.teams {
   display: flex;
   justify-content: space-between;
   width: 100%;
   align-items: center;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
 }
 
-.fixtureBox .team {
+.team {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 45%; /* Adjust width for proper spacing */
+  width: 45%;
+  gap: 4px;
 }
 
-.fixtureBox .vs {
-  width: 100px; /* Adjust width as needed */
-  height: 100px;
+.team span {
+  font-size: 0.95rem;
+  font-weight: 800;
 }
 
-.fixtureBox .score {
-  font-weight: bold; /* Bold text for score */
-  margin-top: 10px;
+/* VS icon smaller + centered */
+.vs {
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
+  opacity: 0.9;
 }
 
+/* Score line */
+.score {
+  font-weight: 800;
+  margin-top: 8px;
+  color: #036b52; /* green */
+}
+
+/* Logos size consistent */
 .fixtureBox img {
-  max-width: 50px; /* Set a maximum width for the team logos */
-  max-height: 50px; /* Set a maximum height for the team logos */
-  margin-top: 5px; /* Add some space above the images */
+  width: 34px;
+  height: 34px;
+  object-fit: contain;
+  margin-top: 2px;
 }
 
 /* Small screens */
 @media (max-width: 412px) {
   .fixtureBox {
-    max-width: 300px; /* Adjust width */
-    margin-left: 35px;
+    max-width: 300px;
+    margin-left: 0;
   }
-  .fixtureBox .vs {
-    width: 80px; /* Adjust width */
-    height: 80px;
+  .vs {
+    width: 52px;
+    height: 52px;
   }
 }
 
-/* Small screens */
 @media (max-width: 360px) {
   .fixtureBox {
-    max-width: 300px; /* Adjust width */
-    margin-left: 10px;
+    max-width: 290px;
   }
-  .fixtureBox .vs {
-    width: 80px; /* Adjust width */
-    height: 80px;
+  .vs {
+    width: 48px;
+    height: 48px;
   }
 }
 
 /* Medium screens */
 @media (min-width: 601px) and (max-width: 1024px) {
   .fixtureBox {
-    max-width: 400px; /* Adjust width */
+    max-width: 400px;
   }
-  .fixtureBox .vs {
-    width: 120px; /* Adjust width */
-    height: 120px;
-  
+  .vs {
+    width: 72px;
+    height: 72px;
   }
 }
 
 /* Large screens */
 @media (min-width: 1025px) {
   .fixtureBox {
-    max-width: 500px; /* Adjust width */
+    max-width: 460px;
   }
-  .fixtureBox .vs {
-    width: 150px; /* Adjust width */
-    height: 150px;
+  .vs {
+    width: 86px;
+    height: 86px;
   }
 }

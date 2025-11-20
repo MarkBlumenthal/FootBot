@@ -7,7 +7,7 @@ import { groupByDate } from '../utils/groupByDate';
 import LoadingModal from './LoadingModal';
 import { normalizeTeamName } from '../utils/normalizeTeamName';
 import { getTeamLogo } from '../utils/getTeamLogo';
-import styles from './fixtures.module.css'; 
+import styles from './fixtures.module.css';
 
 export const LeagueFixtures: React.FC = () => {
   const { leagueId } = useParams<{ leagueId: string }>();
@@ -22,7 +22,7 @@ export const LeagueFixtures: React.FC = () => {
         setError('No league ID provided');
         return;
       }
-      
+
       setLoading(true);
       setShowModal(false);
       try {
@@ -54,14 +54,15 @@ export const LeagueFixtures: React.FC = () => {
 
   if (!matches) {
     return (
-      <div className="text-center mt-5">
+      <div className={`${styles.fixturesPage} text-center mt-5`}>
         <p>Loading match data...</p>
         {showModal && <LoadingModal show={showModal} handleClose={() => setShowModal(false)} />}
       </div>
     );
   }
 
-  const firstFixtureDate = matches.matches && matches.matches.length > 0 ? matches.matches[0]?.utcDate : null;
+  const firstFixtureDate =
+    matches.matches && matches.matches.length > 0 ? matches.matches[0]?.utcDate : null;
   const currentSeason = firstFixtureDate ? getSeasonForDate(firstFixtureDate) : 'Unknown Season';
   const groupedMatches = matches.matches ? groupByDate(matches.matches) : {};
 
@@ -70,41 +71,52 @@ export const LeagueFixtures: React.FC = () => {
   }
 
   return (
-    <div>
-      <div className="d-flex justify-content-between align-items-center my-4">
-        <h2>{matches.competition} Fixtures - Season {currentSeason}</h2>
-        <Link to={`/league/${leagueId}/table/${currentSeason}`} className="btn btn-primary">
+    <div className={styles.fixturesPage}>
+      <div className={`${styles.pageHeader} d-flex justify-content-between align-items-center`}>
+        <h2 className={styles.pageTitle}>
+          {matches.competition} Fixtures - Season {currentSeason}
+        </h2>
+        <Link
+          to={`/league/${leagueId}/table/${currentSeason}`}
+          className={`btn ${styles.goldButton}`}
+        >
           View Table
         </Link>
       </div>
+
       {Object.keys(groupedMatches).map((date, index) => (
         <div key={index} className="mb-4">
-          <h3>{date}</h3>
-          <div className="d-flex flex-wrap"> {/* Use flexbox to wrap boxes */}
+          <h3 className={styles.dateHeading}>{date}</h3>
+
+          <div className="d-flex flex-wrap">
             {groupedMatches[date].map((match, idx) => (
-              <div key={idx} className="p-2"> {/* Add padding for spacing */}
+              <div key={idx} className="p-2">
                 <div className={styles.fixtureBox}>
                   <div className={styles.teams}>
                     <div className={styles.team}>
                       <span>{normalizeTeamName(match.homeTeam?.name)}</span>
-                      <img 
-                        src={getTeamLogo(leagueId!, match.homeTeam?.name)} 
-                        alt={match.homeTeam?.name || 'Home Team'} 
+                      <img
+                        src={getTeamLogo(leagueId!, match.homeTeam?.name)}
+                        alt={match.homeTeam?.name || 'Home Team'}
                         onError={(e) => { e.currentTarget.src = '/logos/default-team.png'; }}
                       />
                     </div>
-                    <img src="/images/vs.png" alt="vs" className={styles.vs} /> {/* VS Image */}
+
+                    <img src="/images/vs.png" alt="vs" className={styles.vs} />
+
                     <div className={styles.team}>
                       <span>{normalizeTeamName(match.awayTeam?.name)}</span>
-                      <img 
-                        src={getTeamLogo(leagueId!, match.awayTeam?.name)} 
-                        alt={match.awayTeam?.name || 'Away Team'} 
+                      <img
+                        src={getTeamLogo(leagueId!, match.awayTeam?.name)}
+                        alt={match.awayTeam?.name || 'Away Team'}
                         onError={(e) => { e.currentTarget.src = '/logos/default-team.png'; }}
                       />
                     </div>
                   </div>
+
                   <div className={styles.score}>
-                    Full Time: {match.score?.fullTime?.home ?? '-'} - {match.score?.fullTime?.away ?? '-'}
+                    Full Time: {match.score?.fullTime?.home ?? '-'} -{' '}
+                    {match.score?.fullTime?.away ?? '-'}
                   </div>
                 </div>
               </div>
@@ -112,9 +124,14 @@ export const LeagueFixtures: React.FC = () => {
           </div>
         </div>
       ))}
-      <Link to={`/league/${leagueId}/table/${currentSeason}`} className="btn btn-primary mt-3">
+
+      <Link
+        to={`/league/${leagueId}/table/${currentSeason}`}
+        className={`btn ${styles.goldButton} mt-3`}
+      >
         View Table
       </Link>
+
       <LoadingModal show={showModal} handleClose={() => setShowModal(false)} />
     </div>
   );
