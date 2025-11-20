@@ -176,24 +176,39 @@
   max-width: 150px;
 }
 
-/* Mobile responsiveness */
-@media (max-width: 768px) {
-  .knockout-bracket {
-    overflow-x: auto;
-    padding: 10px;
-  }
+/* =========================
+   RESPONSIVE PATCH — KNOCKOUT
+   Paste at bottom of KnockoutTree.css
+   ========================= */
 
-  .match-box {
-    width: 120px;
-    font-size: 10px;
-  }
-
-  .round-title {
-    font-size: 12px;
-  }
-
-  .trophy {
-    width: 50px;
-    height: 50px;
-  }
+.knockout-bracket {
+  padding: clamp(8px, 3vw, 20px);
+  border-radius: clamp(12px, 3vw, 16px);
 }
+
+/* Scale match boxes fluidly */
+.match-pair {
+  width: clamp(130px, 36vw, 180px);
+  margin: clamp(6px, 2vw, 10px);
+}
+
+.match-box {
+  font-size: clamp(10px, 2.6vw, 12px);
+  height: clamp(26px, 6vw, 30px);
+}
+
+/* Trophy scales with screen */
+.trophy {
+  width: clamp(48px, 12vw, 80px);
+  height: clamp(48px, 12vw, 80px);
+}
+
+/* Titles scale */
+.bracket-title {
+  font-size: clamp(16px, 4vw, 24px);
+}
+
+.round-title {
+  font-size: clamp(11px, 3vw, 14px);
+}
+

@@ -115,46 +115,60 @@
   margin-top: 2px;
 }
 
-/* Small screens */
-@media (max-width: 412px) {
-  .fixtureBox {
-    max-width: 300px;
-    margin-left: 0;
+/* =========================
+   RESPONSIVE PATCH — FIXTURES
+   Paste at bottom of fixtures.module.css
+   ========================= */
+
+.fixturesPage {
+  padding-top: clamp(120px, 18vw, 160px); /* clears fixed header */
+  padding-inline: clamp(8px, 3vw, 16px);
+}
+
+/* Header row stacks on phones */
+.pageHeader {
+  flex-direction: column !important;
+  align-items: center !important;
+  gap: 10px;
+  text-align: center;
+}
+
+/* Make every fixture card fluid + centered */
+.fixtureBox {
+  width: min(94vw, 460px);
+  max-width: 100%;
+  margin: 10px auto;  /* centers cards */
+}
+
+/* On tiny screens: stack teams vertically */
+@media (max-width: 420px) {
+  .teams {
+    flex-direction: column;
+    gap: 8px;
   }
+
+  .team {
+    width: 100%;
+  }
+
   .vs {
     width: 52px;
     height: 52px;
+    margin: 2px 0;
   }
 }
 
-@media (max-width: 360px) {
-  .fixtureBox {
-    max-width: 290px;
-  }
-  .vs {
-    width: 48px;
-    height: 48px;
-  }
+/* Scale text and logos smoothly */
+.team span {
+  font-size: clamp(0.9rem, 3.5vw, 1rem);
 }
 
-/* Medium screens */
-@media (min-width: 601px) and (max-width: 1024px) {
-  .fixtureBox {
-    max-width: 400px;
-  }
-  .vs {
-    width: 72px;
-    height: 72px;
-  }
+.fixtureBox img {
+  width: clamp(24px, 6vw, 34px);
+  height: clamp(24px, 6vw, 34px);
 }
 
-/* Large screens */
-@media (min-width: 1025px) {
-  .fixtureBox {
-    max-width: 460px;
-  }
-  .vs {
-    width: 86px;
-    height: 86px;
-  }
+.score {
+  font-size: clamp(0.9rem, 3.3vw, 1rem);
 }
+

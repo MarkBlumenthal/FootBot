@@ -81,18 +81,38 @@
   object-fit: contain;
 }
 
-/* Responsive hide columns unchanged from your file */
-@media (max-width: 768px) {
-  .table th,
-  .table td {
-    font-size: 0.8em;
-    padding: 0.5em;
-  }
+/* =========================
+   RESPONSIVE PATCH — TABLE
+   Paste at bottom of LeagueTable.css
+   ========================= */
 
-  .table th.gf,
-  .table th.ga,
-  .table td.gf,
-  .table td.ga {
-    display: none;
+.tablePage {
+  padding-top: clamp(120px, 18vw, 160px);
+  padding-inline: clamp(8px, 3vw, 16px);
+}
+
+.tableHeader {
+  text-align: center;
+  padding: clamp(10px, 3vw, 18px);
+}
+
+/* Slightly smaller min width on phones to reduce scroll */
+@media (max-width: 480px) {
+  .table {
+    min-width: 520px;
   }
+}
+
+/* Scale font/padding smoothly */
+.table th,
+.table td {
+  font-size: clamp(0.78rem, 2.9vw, 0.95rem);
+  padding: clamp(6px, 2vw, 10px);
+}
+
+/* If you use a "View Fixtures" button, center it on mobile */
+.goldButton {
+  display: block;
+  width: fit-content;
+  margin: 12px auto 0;
 }

@@ -531,37 +531,103 @@
 
 /* === RESPONSIVE TWEAKS === */
 
-@media (max-width: 768px) {
-  .homeBackground {
-    padding-top: 120px;
-  }
+/* =========================
+   RESPONSIVE PATCH — HOME
+   Paste at bottom of Home.module.css
+   ========================= */
 
-  .heroTitle {
-    font-size: 1.7rem;
-  }
-
-  .heroSubtitle {
-    font-size: 0.9rem;
-  }
-
-  .container {
-    padding: 1.25rem 1.4rem;
-  }
+/* Use a CSS variable for header height so spacing stays correct everywhere */
+:root {
+  --header-h: clamp(110px, 18vw, 150px);
 }
 
-@media (max-width: 480px) {
-  .heroIcon {
-    width: 64px;
-    height: 64px;
-    font-size: 1.8rem;
-  }
-
-  .heroTitle {
-    font-size: 1.45rem;
-  }
-
-  .searchBar,
-  .searchButton {
-    max-width: 100%;
-  }
+/* Make the main content respect the fixed header on all screens */
+.mainContent {
+  padding-top: var(--header-h);
 }
+
+/* Ensure home layout centers correctly even with iOS dynamic bars */
+.homeBackground {
+  min-height: 100dvh;
+}
+
+.contentContainer {
+  min-height: calc(100dvh - var(--header-h));
+  padding-top: 0;               /* header spacing handled by mainContent */
+  padding-inline: clamp(12px, 4vw, 24px);
+}
+
+/* Hero card scales smoothly */
+.heroCard {
+  width: min(94vw, 680px);
+  padding: clamp(16px, 4vw, 28px);
+  border-radius: clamp(18px, 3vw, 26px);
+}
+
+/* Trophy + title scale for small screens */
+.heroIcon {
+  width: clamp(56px, 13vw, 80px);
+  height: clamp(56px, 13vw, 80px);
+  font-size: clamp(1.6rem, 4.5vw, 2.25rem);
+}
+
+.heroTitle {
+  font-size: clamp(1.35rem, 5vw, 2.2rem);
+  line-height: 1.15;
+  padding-inline: 6px;
+}
+
+.heroSubtitle {
+  font-size: clamp(0.85rem, 3.2vw, 1rem);
+  max-width: 95%;
+}
+
+/* Search input/button full width on phones */
+.searchBar,
+.searchButton {
+  width: min(92vw, 560px);
+}
+
+/* Results text scales down cleanly */
+.fixtureHeading {
+  font-size: clamp(0.95rem, 3.8vw, 1.05rem);
+}
+.teamWithLogo span {
+  font-size: clamp(0.9rem, 3.6vw, 1rem);
+}
+
+/* Header + league nav stays centered and wraps nicely */
+.header {
+  padding-inline: clamp(8px, 3vw, 20px);
+}
+
+.brandTitle {
+  font-size: clamp(1.4rem, 6vw, 2rem);
+  text-align: center;
+}
+
+/* Let league buttons wrap and shrink */
+.leagueNav {
+  gap: clamp(6px, 2.5vw, 12px);
+  max-width: 100%;
+}
+
+.leagueButton {
+  padding: clamp(4px, 1.6vw, 8px) clamp(10px, 2.8vw, 16px);
+}
+
+.leagueIcon {
+  width: clamp(28px, 7vw, 40px);
+  height: clamp(28px, 7vw, 40px);
+}
+
+.leagueLabel {
+  font-size: clamp(0.6rem, 2.5vw, 0.75rem);
+}
+
+/* Tiny phones (iPhone SE etc.) */
+@media (max-width: 360px) {
+  .heroCard { padding: 14px; }
+  .leagueNav { gap: 6px; }
+}
+
